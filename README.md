@@ -93,7 +93,7 @@
   Use `ElaStic_Analyze_B0` to determine optimal `eta_max` and `Fit_order`. If necessary, prepare `ElaStic_3rd.in` for full third-order evaluation.
 
 - **Slack Model Enhancement**:  
-  Incorporate B0' into the empirical constant A of the Slack model using Manabu Inukai’s proposed formula for improved thermal conductivity predictions.
+  Incorporate B0' into the empirical constant A of the Slack model using the formula for improved thermal conductivity predictions.
 
 ---
 
