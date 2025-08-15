@@ -1,13 +1,12 @@
 # ElaStic
-
-## Feature
-- Language:
-  - Python3
+- Language: Python3
 - External Tools:
   - SGROUP: Determine space group and symmetry operations (included in adon_v1_0.tar.gz)
   - DFT Code: Supports Exciting, WIEN2k, and Quantum ESPRESSO
 - Output:
   - Second- and third-order elastic constants (ElaStic_2nd.out, ElaStic_3rd.out)
+  - full second-order elastic tensors (elastic constants) for all crystal lattice types
+  - third-order elastic constants for cubic, hexagonal, and rhombohedral crystals 
   - Generation of deformed structures, evaluation of energy and stress, and analysis using polynomial fitting
 
 ## Elastic Installation
