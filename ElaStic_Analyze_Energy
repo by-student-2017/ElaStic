@@ -328,7 +328,7 @@ for i in range(1, ECs+1):
                 Yfit = polyval(polyfit(etatmp,enetmp, j), strain[k])
                 S    = S + (Yfit-Y)**2
 
-            CV = np.sqrt(S/len(strain))
+            CV = math.sqrt(S/len(strain))
             print('{:13.10f} {}'.format(emax, CV), file=fE)
 
             if (abs(strain[0]+emax) < 1.e-7):
