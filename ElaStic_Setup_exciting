@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #%!%!%-------------------------------- ElaStic_Setup_exciting -------------------------------%!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
@@ -19,15 +19,16 @@
 #__________________________________________________________________________________________________
 
 from lxml  import etree as ET
-from sys   import stdin
-from numpy import *
-import numpy as np
-import os.path
-import shutil
-import glob
-import math
-import sys
 import os
+import sys
+import time
+import math
+import glob
+import shutil
+import subprocess
+import numpy as np
+from math import degrees
+from math import acos, degrees
 
 #%!%!%--- DICTIONARIS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 Ls_Dic={                       \
@@ -131,8 +132,8 @@ LC_Dic = {              \
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the method of the elastic constants calculations ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-print '\n     Energy  ---=>  1    \
-       \n     Stress  ---=>  2    '
+print('\n     Energy  ---=>  1    \
+       \n     Stress  ---=>  2    ')
 num = input('>>>> Please choose the method of the calculation (choose \'1\' or \'2\'): ')
 if (num != 1 and num != 2):
     sys.exit("\n.... Oops ERROR: Choose '1' or '2' \n")
@@ -141,15 +142,15 @@ if (num == 2 ): mthd = 'Stress'
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the order of the elastic constants ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-print '\n     2nd  ---=>  2    \
-       \n     3rd  ---=>  3    '
+print('\n     2nd  ---=>  2    \
+       \n     3rd  ---=>  3    ')
 ordr = input('>>>> Please choose the order of the elastic constant (choose \'2\' or \'3\'): ')
 if (ordr != 2 and ordr != 3 ):
     sys.exit("\n.... Oops ERROR: Choose '2' or '3' \n")
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Checking the input file exist ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
-INF = raw_input('\n>>>> Please enter the exciting input file name: ')
+INF = input('\n>>>> Please enter the exciting input file name: ')
 if (os.path.exists(INF) == False):
     sys.exit('\n.... Oops ERROR: There is NO file with "'+ INF +'" name !?!?!?    \n')
 #--------------------------------------------------------------------------------------------------
@@ -162,9 +163,9 @@ os.system('rm -f sgroup.in ')
 if (os.path.getsize('sgroup.err') != 0):
     fer  = open('sgroup.err', 'r')
     lines= fer.readlines()
-    print '\n.... Oops '+ lines[0]
+    print('\n.... Oops '+ lines[0])
     for i in range(1, len(lines)):
-        print '                 '+ lines[i]
+        print('                 '+ lines[i])
     fer.close()
     sys.exit()
 else: os.system('rm -f sgroup.err')
@@ -237,9 +238,9 @@ else: sys.exit('\n.... Oops ERROR: WRONG Space-Group Number !?!?!?    \n')
 
 if (ordr == 2): order = 'second'
 if (ordr == 3): order = 'third'
-print '\n     '+ SGN_explanation +'\
+print('\n     '+ SGN_explanation +'\
        \n     '+ LC_Dic[LC] +' structure in the Laue classification.\
-       \n     This structure has '+ str(ECs) +' independent '+ order +'-order elastic constants.'
+       \n     This structure has '+ str(ECs) +' independent '+ order +'-order elastic constants.')
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the maximum Lagrangian strain ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
@@ -254,7 +255,7 @@ if (1 < mdr or mdr < 0):
     sys.exit('\n.... Oops ERROR: The maximum Lagrangian strain is out of range !!!!!!\n')
 
 mdr = round(mdr, 3)
-print '     The maximum Lagrangian strain is '+ str(mdr) + '\n'
+print('     The maximum Lagrangian strain is '+ str(mdr) + '\n')
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the number of the distorted structures ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
@@ -268,7 +269,7 @@ if (99 < NoP):
 
 if (NoP%2 == 0):
     NoP   += 1
-print '     The number of the distorted structures is '+ str(NoP) + '\n'
+print('     The number of the distorted structures is '+ str(NoP) + '\n')
 
 ptn = int((NoP-1)/2)
 
@@ -309,13 +310,13 @@ V0   = abs(stretch[0]*stretch[1]*stretch[2]*scale[0]**3*D)
 
 #%!%!%--- Writing the INFO_ElaStic file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 INFO = open('INFO_ElaStic','w')
-print >>INFO, 'Order of elastic constants      =', ordr         ,\
-            '\nMethod of calculation           =', mthd         ,\
-            '\nDFT code name                   = exciting'      ,\
-            '\nSpace-group number              =', SGN          ,\
-            '\nVolume of equilibrium unit cell =', V0, '[a.u^3]',\
-            '\nMaximum Lagrangian strain       =', mdr          ,\
-            '\nNumber of distorted structures  =', NoP
+print('Order of elastic constants        =', ordr         ,\
+      '\nMethod of calculation           =', mthd         ,\
+      '\nDFT code name                   = exciting'      ,\
+      '\nSpace-group number              =', SGN          ,\
+      '\nVolume of equilibrium unit cell =', V0, '[a.u^3]',\
+      '\nMaximum Lagrangian strain       =', mdr          ,\
+      '\nNumber of distorted structures  =', NoP, file=INFO)
 INFO.close
 #--------------------------------------------------------------------------------------------------
 
@@ -445,7 +446,7 @@ for i in Lag_strain_list:
     os.mkdir(Dstn)
     os.chdir(Dstn)
 
-    print>>fdis, Dstn+', Lagrangian strain = ' + Ls_str[i]
+    print(Dstn + ', Lagrangian strain = ' + Ls_str[i], file=fdis)
 
     cont2 = 0
     for s in range(-ptn, ptn+1):
@@ -454,12 +455,12 @@ for i in Lag_strain_list:
             if (mthd == 'Energy'): r = 0.0001
             if (mthd == 'Stress'): r = 0.00001
 
-        Ls = zeros(6)
+        Ls = np.zeros(6)
         for i in range(6):
             Ls[i] = Ls_list[i]
         Lv = r*Ls
         # Lagrangian strain to physical strain (eta = eps + 0.5*eps*esp) --------------------------
-        eta_matrix      = zeros((3,3))
+        eta_matrix      = np.zeros((3,3))
 
         eta_matrix[0,0] = Lv[0]
         eta_matrix[0,1] = Lv[5]/2.
@@ -476,20 +477,20 @@ for i in Lag_strain_list:
         norm       = 1.0
 
         eps_matrix = eta_matrix
-        if (linalg.norm(eta_matrix) > 0.7):
+        if (np.linalg.norm(eta_matrix) > 0.7):
             sys.exit('\n.... Oops ERROR: Too large deformation!\n') 
 
         while( norm > 1.e-10 ):
-            x          = eta_matrix - dot(eps_matrix, eps_matrix)/2.
-            norm       = linalg.norm(x - eps_matrix)      
+            x          = eta_matrix - np.dot(eps_matrix, eps_matrix)/2.
+            norm       = np.linalg.norm(x - eps_matrix)      
             eps_matrix = x
 
 #--------------------------------------------------------------------------------------------------
-        i_matrix   = array([[1., 0., 0.],
-                            [0., 1., 0.], 
-                            [0., 0., 1.]])
+        i_matrix   = np.array([[1., 0., 0.],
+                               [0., 1., 0.], 
+                               [0., 0., 1.]])
         def_matrix = i_matrix + eps_matrix
-        M_new      = dot(M_old, def_matrix)
+        M_new      = np.dot(M_old, def_matrix)
 
         cont2 = cont2 + 1
         if (cont2 < 10):
@@ -497,14 +498,14 @@ for i in Lag_strain_list:
         else:
             Dstn_cont2 = Dstn+ '_' +str(cont2)
 
-        print>>fdis, Dstn_cont2 + ',  eta = ' + str(r)
+        print(Dstn_cont2 + ',  eta = ' + str(r), file=fdis)
 
         bsvct = doc.xpath('//crystal/basevect')
         for j in range(3):
             bdummy = '%22.16f'%(M_new[j,0]) + '%22.16f'%(M_new[j,1]) + '%22.16f'%(M_new[j,2])+' '
-            print>>fdis, 'V' + str(j+1) + ' --=> ' + bdummy
+            print('V' + str(j+1) + ' --=> ' + bdummy, file=fdis)
             bsvct[j].text = bdummy
-        print>>fdis
+        print(file=fdis)
 
         os.mkdir(Dstn_cont2)
         os.chdir(Dstn_cont2)

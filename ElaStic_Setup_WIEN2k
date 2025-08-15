@@ -565,7 +565,7 @@ if (Ltype == 'CXZ'): V0 = D/2.
 
 #%!%!%--- Writing the "INFO_ElaStic" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 INFO = open('INFO_ElaStic','w')
-print('Order of elastic constants      =', ordr,
+print('Order of elastic constants        =', ordr,
       '\nMethod of calculation           =', mthd,
       '\nDFT code name                   = WIEN2k',
       '\nSpace-group number              =', SGN,
