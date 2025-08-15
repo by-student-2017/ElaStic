@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #%!%!% ------------------------------- ElaStic_Setup_WIEN2k -------------------------------- %!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
@@ -18,16 +18,16 @@
 # 
 #__________________________________________________________________________________________________
 
-from sys   import stdin
-from numpy import *
-from math  import *
-import numpy as np
-import os.path
-import shutil
-import glob
-import math
-import sys
 import os
+import sys
+import time
+import math
+import glob
+import shutil
+import subprocess
+import numpy as np
+from math import degrees
+from math import acos, degrees
 
 #%!%!%--- DICTIONARIS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 Ls_Dic={                       \
@@ -131,8 +131,8 @@ LC_Dic = {              \
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the method of the elastic constants calculations ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-print '\n     Energy  ---=>  1    \
-       \n     Stress  ---=>  2    '
+print('\n     Energy  ---=>  1    \
+       \n     Stress  ---=>  2    ')
 num = input('>>>> Please choose the method of the calculation (choose 1 or 2): ')
 if (num != 1 and num != 2):
     sys.exit("\n.... Oops ERROR: Choose '1' or '2' \n")
@@ -141,8 +141,8 @@ if (num == 2 ): mthd = 'Stress'
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the order of the elastic constants ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-print '\n     2nd  ---=>  2    \
-       \n     3rd  ---=>  3    '
+print('\n     2nd  ---=>  2    \
+       \n     3rd  ---=>  3    ')
 ordr = input('>>>> Please choose the order of the elastic constant (choose 2 or 3): ')
 if (ordr != 2 and ordr != 3 ):
     sys.exit("\n.... Oops ERROR: Choose '2' or '3' \n")
@@ -231,9 +231,9 @@ else: sys.exit('\n.... Oops ERROR: WRONG Space-Group Number !?!?!?    \n')
 
 if (ordr == 2): order = 'second'
 if (ordr == 3): order = 'third'
-print '\n     '+ SGN_explanation +'\
+print('\n     '+ SGN_explanation +'\
        \n     '+ LC_Dic[LC] +' structure in the Laue classification.\
-       \n     This structure has '+ str(ECs) +' independent '+ order +'-order elastic constants.'
+       \n     This structure has '+ str(ECs) +' independent '+ order +'-order elastic constants.')
 
 os.system('rm -f :log *outputsgroup* *struct_sgroup')
 #--------------------------------------------------------------------------------------------------
@@ -368,15 +368,15 @@ for i in range(NAT_L):
 
 #%!%!%--- Writing the case_P.struct file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 fP = open(dir_name+'_P.struct', 'w')
-print>>fP, title
-print>>fP, 'P   LATTICE,NONEQUIV.ATOMS:'+'%3d'%(NAT_P)
-print>>fP, 'MODE OF CALC='+mode+' unit='+unit
-print>>fP, '%10.6f'%(a1)   + \
-           '%10.6f'%(a2)   + \
-           '%10.6f'%(a3)   + \
-           '%10.6f'%(alpha)+ \
-           '%10.6f'%(beta) + \
-           '%10.6f'%(gamma)
+print(title, file=fP)
+print('P   LATTICE,NONEQUIV.ATOMS:' + '%3d' % (NAT_P), file=fP)
+print('MODE OF CALC=' + mode + ' unit=' + unit, file=fP)
+print('%10.6f' % a1 +
+      '%10.6f' % a2 +
+      '%10.6f' % a3 +
+      '%10.6f' % alpha +
+      '%10.6f' % beta +
+      '%10.6f' % gamma, file=fP)
 
 if (LC == 'CI' or\
     LC == 'CII'):
@@ -393,21 +393,21 @@ for i in range(len(INFO_P)):
     numa= INFO_P[i][0]
     end = bgn + numa
     for j in range(bgn, end):
-        print>>fP, 'ATOM'+atom_index+': X='+'%10.8f'%(POSN_P[j][0]) + \
-                                      ' Y='+'%10.8f'%(POSN_P[j][1]) + \
-                                      ' Z='+'%10.8f'%(POSN_P[j][2])
-        if (j == bgn): print>>fP, '          MULT='  +'%2d'%(INFO_P[i][0]) + \
-                                  '          ISPLIT='+'%2d'%(INFO_P[i][1])
+        print('ATOM' + atom_index + ': X=' + '%10.8f' % POSN_P[j][0] +
+                                     ' Y=' + '%10.8f' % POSN_P[j][1] +
+                                     ' Z=' + '%10.8f' % POSN_P[j][2], file=fP)
+        if (j == bgn): print('          MULT='   + '%2d' % INFO_P[i][0] +
+                             '          ISPLIT=' + '%2d' % INFO_P[i][1], file=fP)
     bgn = end
 
-    print>>fP, INFO_P[i][2]+' NPT='+'%5d'   %(INFO_P[i][3]) + \
-                            '  R0='+'%10.8f'%(INFO_P[i][4]) + \
-                            ' RMT='+'%10.5f'%(INFO_P[i][5]) + \
-                            '   Z:'+'%7.2f' %(INFO_P[i][6])
-    print>>fP, 'LOCAL ROT MATRIX:   '+INFO_P[i][7]
-    print>>fP, '                    '+INFO_P[i][8]
-    print>>fP, '                    '+INFO_P[i][9]
-print>>fP, '   0      NUMBER OF SYMMETRY OPERATIONS'
+    print(INFO_P[i][2] + ' NPT=' + '%5d'    % INFO_P[i][3] +
+                         '  R0=' + '%10.8f' % INFO_P[i][4] +
+                         ' RMT=' + '%10.5f' % INFO_P[i][5] +
+                         '   Z:' + '%7.2f'  % INFO_P[i][6], file=fP)
+    print('LOCAL ROT MATRIX:   ' + INFO_P[i][7], file=fP)
+    print('                    ' + INFO_P[i][8], file=fP)
+    print('                    ' + INFO_P[i][9], file=fP)
+print('   0      NUMBER OF SYMMETRY OPERATIONS', file=fP)
 fP.close()
 #--------------------------------------------------------------------------------------------------
 
@@ -423,7 +423,7 @@ if (1 < mdr or mdr < 0):
     sys.exit('\n.... Oops ERROR: The maximum Lagrangian strain is out of range !!!!!!\n')
 
 mdr = round(mdr, 3)
-print '     The maximum Lagrangian strain is '+ str(mdr) + '\n'
+print('     The maximum Lagrangian strain is '+ str(mdr) + '\n')
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the number of the distorted structures ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
@@ -437,7 +437,7 @@ if (99 < NoP):
 
 if (NoP%2 == 0):
     NoP   += 1
-print '     The number of the distorted structures is '+ str(NoP) + '\n'
+print('     The number of the distorted structures is '+ str(NoP) + '\n')
 
 ptn = int((NoP-1)/2)
 
@@ -455,7 +455,7 @@ alpha = radians(alpha)
 beta  = radians(beta)
 gamma = radians(gamma)
 
-M_old = zeros((3,3))
+M_old = np.zeros((3,3))
 
 if (LC == 'CI'  or \
     LC == 'CII' or \
@@ -565,13 +565,13 @@ if (Ltype == 'CXZ'): V0 = D/2.
 
 #%!%!%--- Writing the "INFO_ElaStic" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 INFO = open('INFO_ElaStic','w')
-print >>INFO, 'Order of elastic constants      =', ordr         ,\
-            '\nMethod of calculation           =', mthd         ,\
-            '\nDFT code name                   = WIEN2k'        ,\
-            '\nSpace-group number              =', SGN          ,\
-            '\nVolume of equilibrium unit cell =', V0, '[a.u^3]',\
-            '\nMaximum Lagrangian strain       =', mdr          ,\
-            '\nNumber of distorted structures  =', NoP
+print('Order of elastic constants      =', ordr,
+      '\nMethod of calculation           =', mthd,
+      '\nDFT code name                   = WIEN2k',
+      '\nSpace-group number              =', SGN,
+      '\nVolume of equilibrium unit cell =', V0, '[a.u^3]',
+      '\nMaximum Lagrangian strain       =', mdr,
+      '\nNumber of distorted structures  =', NoP, file=INFO)
 INFO.close()
 #--------------------------------------------------------------------------------------------------
 
@@ -705,7 +705,7 @@ for i in Lag_strain_list:
     os.mkdir(Dstn)
     os.chdir(Dstn)
 
-    print>>fdis, Dstn+', Lagrangian strain = ' + Ls_str[i]
+    print(Dstn + ', Lagrangian strain = ' + Ls_str[i], file=fdis)
 
     cont2 = 0
     for s in range(-ptn, ptn+1):
@@ -714,13 +714,13 @@ for i in Lag_strain_list:
             if (mthd == 'Energy'): r = 0.0001
             if (mthd == 'Stress'): r = 0.00001
 
-        Ls = zeros(6)
+        Ls = np.zeros(6)
         for i in range(6):
             Ls[i] = Ls_list[i]
         Lv = r*Ls
 
         #--- Lagrangian strain to physical strain (eta = eps + 0.5*eps*esp) -----------------------
-        eta_matrix      = zeros((3,3))
+        eta_matrix      = np.zeros((3,3))
 
         eta_matrix[0,0] = Lv[0]
         eta_matrix[0,1] = Lv[5]/2.
@@ -740,16 +740,16 @@ for i in Lag_strain_list:
             sys.exit('\n.... Oops ERROR: Too large deformation!\n') 
 
         while( norm > 1.e-10 ):
-            x          = eta_matrix - dot(eps_matrix, eps_matrix)/2.
+            x          = eta_matrix - np.dot(eps_matrix, eps_matrix)/2.
             norm       = linalg.norm(x - eps_matrix)      
             eps_matrix = x
 
         #--- Calculating the M_new matrix ---------------------------------------------------------
-        i_matrix   = array([[1., 0., 0.],
-                            [0., 1., 0.], 
-                            [0., 0., 1.]])
+        i_matrix   = np.array([[1., 0., 0.],
+                               [0., 1., 0.], 
+                               [0., 0., 1.]])
         def_matrix = i_matrix + eps_matrix
-        M_new      = dot(M_old, def_matrix)
+        M_new      = np.dot(M_old, def_matrix)
 
 #------ Calculating the distorted lattice parameters and angles -----------------------------------
         A1    = sqrt(M_new[0,0]**2. + M_new[0,1]**2. + M_new[0,2]**2.)
@@ -773,12 +773,12 @@ for i in Lag_strain_list:
         else:
             Dstn_cont2 = Dstn +'_' +str(cont2)
 
-        print>>fdis, Dstn_cont2 + ',  eta = '+'%13.10f'%(r)+','+'%12.6f'%(A1)   \
-                                                               +'%12.6f'%(A2)   \
-                                                               +'%12.6f'%(A3)   \
-                                                               +'%12.6f'%(ALPHA)\
-                                                               +'%12.6f'%(BETA) \
-                                                               +'%12.6f'%(GAMMA)
+        print(Dstn_cont2 + ',  eta = '+'%13.10f'%(r)+','+'%12.6f'%(A1)   \
+                                                        +'%12.6f'%(A2)   \
+                                                        +'%12.6f'%(A3)   \
+                                                        +'%12.6f'%(ALPHA)\
+                                                        +'%12.6f'%(BETA) \
+                                                        +'%12.6f'%(GAMMA), file=fdis)
 
         os.mkdir(Dstn_cont2)
         os.chdir(Dstn_cont2)
@@ -794,13 +794,13 @@ for i in Lag_strain_list:
         Plins.insert(3, Lattice_Parameters+'\n')
 
         for i in range(len(Plins)):
-            print>>fo, Plins[i],
+            print(Plins[i], end=' ', file=fo)
         fo.close()
         #------------------------------------------------------------------------------------------
         os.chdir('../')
     os.chdir('../')
-    print>>fdis
-print>>fdis,'   Distorted parameters: END'
+    print(file=fdis)
+print('   Distorted parameters: END', file=fdis)
 fdis.close()
 os.system('mkdir Structures_WIEN2k')
 os.system('cp -f Dst??/Dst??_??/Dst??_??.struct Structures_WIEN2k/')
