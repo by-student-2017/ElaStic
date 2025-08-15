@@ -17,7 +17,7 @@ for energy and stress calculations.
 STEP 0.1:
      The "ElaSticROOT" shell variable must be set by the user. For instance, add the following 
      line with the correct "ElaStic" path, in the ".bashrc" file:
-     export ElaSticROOT=/home/dir1/dir2/ElaStic
+     export ElaSticROOT=$HOME/ElaStic
 
 STEP 0.2:
      Download and install "SGROUP" program:
@@ -75,12 +75,12 @@ STEP 1.2:
      The "WIEN2k_init_lapw_silent" script is the modified script file of the "init_lapw" program.
      You find FLAGS of "WIEN2k_init_lapw_silent" program if you write following command in terminal:
 
-     $ WIEN2k_init_lapw_silent -H
+     $ csh WIEN2k_init_lapw_silent.csh -H
 
      Once the WIEN2k calculations are finished, you can run the following scripts to save and clean
      your calculations.
     
-     $ ElaStic_Save_Clean_WIEN2k
+     $ csh ElaStic_Save_Clean_WIEN2k.csh
 
      NOTICE to "Quantum ESPRESSO" users:
      The output file must be saved under same name of the input file but with ".out" extension. 
