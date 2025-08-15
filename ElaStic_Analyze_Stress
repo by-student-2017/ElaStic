@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #%%% --------------------------------- ElaStic_Analyze_Stress -------------------------------- %%%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
@@ -18,17 +18,16 @@
 # 
 #__________________________________________________________________________________________________
 
-from sys   import stdin
-from numpy import *
-import numpy as np
-import subprocess
-import warnings
-import os.path
-import shutil
-import copy
-import math
-import sys
 import os
+import sys
+import copy
+import warnings
+import numpy as np
+import math
+import subprocess
+import shutil
+import matplotlib.pyplot as plt
+import statistics
 
 #%!%!%--- SUBROUTINS AND FUNCTIONS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 def sortlist(lst1, lst2):
@@ -48,12 +47,58 @@ def sortlist(lst1, lst2):
 
 #%!%!%--- Dictionaries ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 Ls_Dic={                       \
+# I've added a temporary definition, so check it out. (01 - 35)
+'01':[ 1., 1., 1., 0., 0., 0.],\
+'02':[ 1., 0., 0., 0., 0., 0.],\
+'03':[ 0., 1., 0., 0., 0., 0.],\
+'04':[ 0., 0., 1., 0., 0., 0.],\
+'05':[ 0., 0., 0., 2., 0., 0.],\
+'06':[ 0., 0., 0., 0., 2., 0.],\
+'07':[ 0., 0., 0., 0., 0., 2.],\
+'08':[ 1., 1., 0., 0., 0., 0.],\
+'09':[ 1., 0., 1., 0., 0., 0.],\
+'10':[ 1., 0., 0., 2., 0., 0.],\
+'11':[ 1., 0., 0., 0., 2., 0.],\
+'12':[ 1., 0., 0., 0., 0., 2.],\
+'13':[ 0., 1., 1., 0., 0., 0.],\
+'14':[ 0., 1., 0., 2., 0., 0.],\
+'15':[ 0., 1., 0., 0., 2., 0.],\
+'16':[ 0., 1., 0., 0., 0., 2.],\
+'17':[ 0., 0., 1., 2., 0., 0.],\
+'18':[ 0., 0., 1., 0., 2., 0.],\
+'19':[ 0., 0., 1., 0., 0., 2.],\
+'20':[ 0., 0., 0., 2., 2., 0.],\
+'21':[ 0., 0., 0., 2., 0., 2.],\
+'22':[ 0., 0., 0., 0., 2., 2.],\
+'23':[ 0., 0., 0., 2., 2., 2.],\
+'24':[-1., 0.5, 0.5, 0., 0., 0.],\
+'25':[ 0.5,-1., 0.5, 0., 0., 0.],\
+'26':[ 0.5, 0.5,-1., 0., 0., 0.],\
+'27':[ 1.,-1., 0., 0., 0., 0.],\
+'28':[ 1.,-1., 0., 0., 0., 2.],\
+'29':[ 0., 1.,-1., 0., 0., 2.],\
+'30':[ 0.5, 0.5,-1., 0., 0., 2.],\
+'31':[ 1., 0., 0., 2., 2., 0.],\
+'32':[ 1., 1.,-1., 0., 0., 0.],\
+'33':[ 1., 1., 1.,-2.,-2.,-2.],\
+'34':[ 0.5, 0.5,-1., 2., 2., 2.],\
+'35':[ 0., 0., 0., 2., 2., 4.],\
+# original (36 -41)
 '36':[ 1., 2., 3., 4., 5., 6.],\
 '37':[-2., 1., 4.,-3., 6.,-5.],\
 '38':[ 3.,-5.,-1., 6., 2.,-4.],\
 '39':[-4.,-6., 5., 1.,-3., 2.],\
 '40':[ 5., 4., 6.,-2.,-1.,-3.],\
 '41':[-6., 3.,-2., 5.,-4., 1.]}
+#
+# I've added a temporary definition, so check it out. (42 - 48)
+'42':[ 1., 1., 0., 2., 0., 0.],\
+'43':[ 1., 0., 1., 0., 2., 0.],\
+'44':[ 0., 1., 1., 0., 0., 2.],\
+'45':[ 1., 1., 1., 2., 2., 2.],\
+'46':[ 1.,-1., 1.,-2., 2.,-2.],\
+'47':[ 2., 0., 0., 0., 2., 2.],\
+'48':[ 0., 2., 2., 2., 0., 0.],}
 
 #%!%!%--- Reading the "I'NFO_ElaStic" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 INFO=open('INFO_ElaStic', 'r')
@@ -136,46 +181,46 @@ if (mthd == 'Stress'):
     if (ordr == 2):
         if (LC == 'CI' or \
             LC == 'CII'):
-            Lag_strain_list = ['36']
+            Lag_strain_list = ['36']  # NoD = 1, Dst01
         if (LC == 'HI' or \
             LC == 'HII'):
-            Lag_strain_list = ['36','38']
+            Lag_strain_list = ['36','38']  # NoD = 2, Dst02
         if (LC == 'RI' or \
             LC == 'RII'):
-            Lag_strain_list = ['36','38']
+            Lag_strain_list = ['36','38']  # NoD = 2, Dst02
         if (LC == 'TI' or \
             LC == 'TII'):
-            Lag_strain_list = ['36','38']
+            Lag_strain_list = ['36','38']  # NoD = 2, Dst02
         if (LC == 'O'):
-            Lag_strain_list = ['36','38','40']
+            Lag_strain_list = ['36','38','40']  # NoD = 3, Dst03
         if (LC == 'M'):
-            Lag_strain_list = ['36','37','38','39','40']
+            Lag_strain_list = ['36','37','38','39','40']  # NoD = 5, Dst05
         if (LC == 'N'):
-            Lag_strain_list = ['36','37','38','39','40','41']
+            Lag_strain_list = ['36','37','38','39','40','41']  # NoD = 6, Dst06
 
     if (ordr == 3):
         if (LC == 'CI'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '42', '43']  # NoD = 3, Dst03, Matrix 18 rows x 6 columns (C[0]-C[5])
         if (LC == 'CII'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '42']  # NoD = 2, Dst02, Matrix 12 rows x 8 columns (C[0]-C[7])
         if (LC == 'HI'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 10 columns (C[0]-C[9])
         if (LC == 'HII'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12 x 12 columns (C[0]-C[11])
         if (LC == 'RI'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 14 columns (C[0]-C[13])
         if (LC == 'RII'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12 rows x 12 columns (C[0]-C[11])
         if (LC == 'TI'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 8 columns (C[0]-C[7])
         if (LC == 'TII'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12 rows x 10 columns (C[0]-C[9])
         if (LC == 'O'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '42', '43']  # NoD = 3, Dst03, Matrix 18 rows x 10 columns (C[0]-C[9])
         if (LC == 'M'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '38', '42', '43']  # NoD = 4, Dst04, Matrix 24 rows x 12 columns (C[0]-C[11])
         if (LC == 'N'):
-            sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+            Lag_strain_list = ['36', '37', '38', '42', '43']  # NoD = 5, Dst05, Matrix 30 rows x 15 columns (C[0]-C[4])
 
 cont1= 0
 for i in Lag_strain_list:
@@ -194,11 +239,12 @@ for i in Lag_strain_list:
     flstres = open(Dstn+'_Lagrangian-stress.dat', 'w')
     fpstres = open(Dstn+  '_Physical-stress.dat', 'w')
 
-    print>>flstres, ' Lagrangian strain and Lagrangian stresses (LS) in Voigt notation for '+ Dstn +'.'
-    l=' Lag. strain          LS1              LS2              LS3              LS4              LS5              LS6 '
-    print>>flstres, l 
-    print>>fpstres, ' Lagrangian strain and physical stresses (PS) in Voigt notation for '+ Dstn +'.'
-    print>>fpstres, ' Lag. strain         PS1          PS2          PS3          PS4          PS5          PS6 '
+    print(' Lagrangian strain and Lagrangian stresses (LS) in Voigt notation for ' + Dstn + '.', file=flstres)
+    l = ' Lag. strain          LS1              LS2              LS3              LS4              LS5              LS6 '
+    print(l, file=flstres)
+    
+    print(' Lagrangian strain and physical stresses (PS) in Voigt notation for ' + Dstn + '.', file=fpstres)
+    print(' Lag. strain         PS1          PS2          PS3          PS4          PS5          PS6 ', file=fpstres)
 
     for j in range(1, NoP+1):
         if (j<10):
@@ -213,12 +259,12 @@ for i in Lag_strain_list:
             r = 2*mdr*s/(NoP-1)
             if (s==0): r = 0.00001
 
-            le = zeros(6)
+            le = np.zeros(6)
             for i in range(6):
                 le[i] = Ls_list[i]
             Lv = r*le
             #--- Lag. to phy. strain (eta = eps + 0.5*eps*esp) and making the deformation matrix --
-            eta_matrix      = zeros((3,3))
+            eta_matrix      = np.zeros((3,3))
 
             eta_matrix[0,0] = Lv[0]
             eta_matrix[0,1] = Lv[5]/2.
@@ -234,22 +280,22 @@ for i in Lag_strain_list:
 
             norm      =1.0
             eps_matrix=eta_matrix
-            if (linalg.norm(eta_matrix) > 0.7):
+            if (np.linalg.norm(eta_matrix) > 0.7):
                 sys.exit('\n.... Oops ERROR: Too large deformation!\n') 
 
             while( norm > 1.e-10 ):
-                x          = eta_matrix - dot(eps_matrix, eps_matrix)/2.
-                norm       = linalg.norm(x - eps_matrix)      
+                x          = eta_matrix - np.dot(eps_matrix, eps_matrix)/2.
+                norm       = np.linalg.norm(x - eps_matrix)      
                 eps_matrix = x
 
             #--- Calculating the deformation matrix -----------------------------------------------
-            i_matrix   = array([[1., 0., 0.],
-                                [0., 1., 0.], 
-                                [0., 0., 1.]])
+            i_matrix   = np.array([[1., 0., 0.],
+                                   [0., 1., 0.], 
+                                   [0., 0., 1.]])
             def_matrix = i_matrix + eps_matrix
 
             #--- Reading the physical stresses from the output files ------------------------------
-            sig = zeros((3,3))
+            sig = np.zeros((3,3))
 
             if (cod == 'WIEN2k'):
                 sys.exit('\n.... Oops SORRY: Not implemented yet !\n')
@@ -284,12 +330,10 @@ for i in Lag_strain_list:
 
                         fstres.close()
                     else: 
-                        print '\n.... Oops WARNING: No Stresses in "'+ \
-                              Dstn_num +'.out" file !?!?!?\n'
+                        print('\n.... Oops WARNING: No Stresses in "' + Dstn_num + '.out" file !?!?!?\n', file=sys.stderr)
 
                 else: 
-                    print '\n.... Oops WARNING: Where is the "'+ \
-                           Dstn_num +'.out" file !?!?!?\n'
+                    print('\n.... Oops WARNING: Where is the "' + Dstn_num + '.out" file !?!?!?\n')
 
 #--------------------------------------------------------------------------------------------------
             dm  = def_matrix
@@ -300,19 +344,11 @@ for i in Lag_strain_list:
                 strain = '+%12.10f'%r
             else:
                 strain =  '%13.10f'%r
-            print >>fpstres, strain +'   '+'%10.3f'%sig[0,0]\
-                                    +'   '+'%10.3f'%sig[1,1]\
-                                    +'   '+'%10.3f'%sig[2,2]\
-                                    +'   '+'%10.3f'%sig[1,2]\
-                                    +'   '+'%10.3f'%sig[0,2]\
-                                    +'   '+'%10.3f'%sig[0,1]
+            print('{:<15} {:10.3f} {:10.3f} {:10.3f} {:10.3f} {:10.3f} {:10.3f}'.format(
+                strain, sig[0,0], sig[1,1], sig[2,2], sig[1,2], sig[0,2], sig[0,1]), file=fpstres)
 
-            print >>flstres, strain +'   '+'%14.8f'%tao[0,0]\
-                                    +'   '+'%14.8f'%tao[1,1]\
-                                    +'   '+'%14.8f'%tao[2,2]\
-                                    +'   '+'%14.8f'%tao[1,2]\
-                                    +'   '+'%14.8f'%tao[0,2]\
-                                    +'   '+'%14.8f'%tao[0,1]
+            print('{:<15} {:14.8f} {:14.8f} {:14.8f} {:14.8f} {:14.8f} {:14.8f}'.format(
+                strain, tao[0,0], tao[1,1], tao[2,2], tao[1,2], tao[0,2], tao[0,1]), file=flstres)
             os.chdir('../')
     flstres.close()
     fpstres.close()
@@ -361,8 +397,8 @@ for i in range(1, NoD+1):
             fD = open(Dstn+'_'+LSi_dic[l]+'_d2S.dat','w')
 
         fE = open(Dstn+'_'+LSi_dic[l]+'_CVe.dat','w')
-        print >> fD, '# Max. eta    SUM(Cij) \n#'
-        print >> fE, '# Max. eta    Cross-Validation error   \n#'
+        print('# Max. eta    SUM(Cij) \n#', file=fD)
+        print('# Max. eta    Cross-Validation error   \n#', file=fE)
 
         for j in range(ordr+3, ordr-2, -2):
             if  (j == 2): nth = '2nd'
@@ -370,8 +406,8 @@ for i in range(1, NoD+1):
             else:
                 nth = str(j) + 'th'
 
-            print >> fD, '\n# '+ nth +' order fit.'
-            print >> fE, '\n# '+ nth +' order fit.'
+            print('\n# ' + nth + ' order fit.', file=fD)
+            print('\n# ' + nth + ' order fit.', file=fE)
 
             #--- Reading the input files ----------------------------------------------------------
             nl    = 0
@@ -430,7 +466,7 @@ for i in range(1, NoD+1):
                 if (ordr == 3):
                     Cij = coeffs[j-2] * CONV * 0.001 # in TPa unit
 
-                print >>fD, '%13.10f'%emax, '%18.6f'%Cij
+                print('%13.10f' % emax, '%18.6f' % Cij, file=fD)
                 if (abs(strain[0]+emax) < 1.e-7):
                     strain.pop(0)
                     stress.pop(0)
@@ -460,7 +496,7 @@ for i in range(1, NoD+1):
                     S = S + (Yfit-Y)**2
 
                 CV = sqrt(S/len(strain))
-                print >>fE, '%13.10f'%emax, CV
+                print('%13.10f' % emax, '%18.6f' % CV, file=fE)
 
                 if (abs(strain[0]+emax) < 1.e-7):
                     strain.pop(0)
@@ -498,7 +534,7 @@ for i in range(1, NoD+1):
 
         GdE = open(Dstn+'_'+LSi_dic[l]+'_d'+str(ordr-1)+'S.par', 'w')
         for k in range(len(TMP)):
-            print >>GdE, TMP[k],
+            print(TMP[k], end='', file=GdE)
         GdE.close()
 
         os.system('xmgrace '+Dstn+'_'+LSi_dic[l]+'_d'+str(ordr-1)+'S.dat -param '+Dstn+'_'+LSi_dic[l]+'_d1S.par -saveall '\
@@ -518,7 +554,7 @@ for i in range(1, NoD+1):
 
         CVe = open(Dstn+'_'+LSi_dic[l]+'_CVe.par', 'w')
         for k in range(len(TMP)):
-            print >>CVe, TMP[k],
+            print(TMP[k], end='', file=CVe)
         CVe.close()
 
         os.system('xmgrace '+Dstn+'_'+LSi_dic[l]+'_CVe.dat -param '+Dstn+'_'+LSi_dic[l]+'_CVe.par -saveall '\
@@ -538,8 +574,10 @@ for i in range(1, NoD+1):
     else:
         Dstn = 'Dst' +str(i)
 
-    print >>fri, Dstn+'    eta_max1     eta_max2     eta_max3     eta_max4     eta_max5     eta_max6  \n'\
-                 '        Fit_order1   Fit_order2   Fit_order3   Fit_order4   Fit_order5   Fit_order6 \n'
+    print(
+    Dstn + '    eta_max1     eta_max2     eta_max3     eta_max4     eta_max5     eta_max6  \n'
+           '        Fit_order1   Fit_order2   Fit_order3   Fit_order4   Fit_order5   Fit_order6 \n',
+    file=fri)
 fri.close()
 #--------------------------------------------------------------------------------------------------
 os.system('rm -f Stress-vs-Strain/Grace.par')
