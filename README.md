@@ -1,4 +1,6 @@
 # ElaStic
+
+## Features
 - Language: Python3
 - External Tools:
   - SGROUP: Determine space group and symmetry operations (included in adon_v1_0.tar.gz)
@@ -24,7 +26,14 @@
 
 ## Usage
 1. python3 $HOME/Elastic2020/ElaStic_Setup
-2. (run exciting or 
+2. (run exciting, WIEN2k or QE) (QE: *.in -> *.out)
+3. python3 $HOME/Elastic2020/ElaStic_Analyze
+4. (From the figures shown in ElaStic_2nd.in or ElaStic_3rd.in, specify the eta_max and Fit_order for a fit that is converging at a plateau and not too large in order.)
+5. python3 $HOME/Elastic2020/ElaStic_Result
+
+## Postprocessing
+- ElaStic_xyz2XYZ: Transformation of tensors using coordinate transformation
+- ElaStic_Analyze_B0: Analysis of strain dependence of bulk modulus B0 and its pressure derivative B0'
 
 ## References
 - [1] R. Golesorkhtabar, P. Pavone, J. Spitaler, P. Puschnig, and C. Draxl, ElaStic: A tool for calculating second-order elastic constants from first principles, Comp. Phys. Commun. 184, 1861 (2013).: https://exciting-code.org/elastic/
