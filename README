@@ -66,14 +66,14 @@ STEP 1.2:
      codes.
 
      NOTICE to "WIEN2k" users:
-     A shell script program is provided under the name "ElaStic_WIEN2k_init" which allows you 
+     A shell script program is provided under the name "ElaStic_WIEN2k_init.sh" which allows you 
      to initialize the deformed structures automatically.
      Before executing this program, you must specify input variables of "WIEN2k" calculations.
      It is recommended to copy this file to the directory where "Dst??" directories, e.g. Dst01, 
      exist. Then, modify line 23 of this program according to the accuracy of your calculations.
 
      The "WIEN2k_init_lapw_silent" script is the modified script file of the "init_lapw" program.
-     You find FLAGS of "WIEN2k_init_lapw_silent" program if you write following command in terminal:
+     You find FLAGS of "WIEN2k_init_lapw_silent.csh" program if you write following command in terminal:
 
      $ csh WIEN2k_init_lapw_silent.csh -H
 
