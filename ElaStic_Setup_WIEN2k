@@ -413,10 +413,10 @@ fP.close()
 
 #%!%!%--- Reading the maximum Lagrangian strain ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 if (mthd == 'Energy'):
-    mdr = int(input('\n>>>> Please enter the maximum Lagrangian strain '\
+    mdr = float(input('\n>>>> Please enter the maximum Lagrangian strain '\
                 '\n     The suggested value is between 0.030 and 0.150: '))
 if (mthd == 'Stress'):
-    mdr = int(input('\n>>>> Please enter the maximum Lagrangian strain '\
+    mdr = float(input('\n>>>> Please enter the maximum Lagrangian strain '\
                 '\n     The suggested value is between 0.0010 and 0.0050: '))
 
 if (1 < mdr or mdr < 0):
