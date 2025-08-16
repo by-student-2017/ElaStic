@@ -16,8 +16,15 @@ for energy and stress calculations.
      In order to use "ElaStic" software package, please follow the steps below:
 STEP 0.1:
      The "ElaSticROOT" shell variable must be set by the user. For instance, add the following 
-     line with the correct "ElaStic" path, in the ".bashrc" file:
+     line with the correct "ElaStic" path, in the "$HOME/.bashrc" file:
      export ElaSticROOT=$HOME/ElaStic
+     export PATH=$ElaSticROOT:$PATH
+
+     Update your environment with the following command and use the "which" command to check if
+     the link is established. If the link is established, the absolute path will be displayed.
+     
+     source ~/.bashrc
+     which ElaStic_Setup
 
 STEP 0.2:
      Download and install "SGROUP" program:
