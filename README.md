@@ -17,16 +17,17 @@
 
 ## Elastic Installation
 1. sudo apt update
-2. sudo apt -y install python3 python3-numpy python3-matplotlib grace
-3. cd $HOME
-4. git clone https://github.com/by-student-2017/ElaStic.git
-5. cd ElaStic
-6. tar xvf adon_v1_0.tar.gz
-7. cd SpaceGroups
-8. make
-9. cd ..
-10. cp SpaceGroups/sgroup ./sgroup
-11. echo 'export PATH="$HOME/ElaStic:$PATH"' >> ~/.bashrc
+2. sudo apt -y install gfortran make build-essential grace
+3. sudo apt -y install python3 python3-numpy python3-matplotlib
+4. cd $HOME
+5. git clone https://github.com/by-student-2017/ElaStic.git
+6. cd ElaStic
+7. tar xvf adon_v1_0.tar.gz
+8. cd SpaceGroups
+9. make
+10. cd ..
+11. cp SpaceGroups/sgroup ./sgroup
+12. echo 'export PATH="$HOME/ElaStic:$PATH"' >> ~/.bashrc
 
 ---
 
