@@ -17,7 +17,7 @@
 
 ## Elastic Installation
 1. sudo apt update
-2. sudo apt -y install python3 python3-numpy python3-matplotlib
+2. sudo apt -y install python3 python3-numpy python3-matplotlib grace
 3. cd $HOME
 4. git clone https://github.com/by-student-2017/ElaStic.git
 5. cd ElaStic
