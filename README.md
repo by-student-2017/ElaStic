@@ -104,9 +104,10 @@
 ---
 
 ## Test
-- OS: Ubuntu 22.04 LTS (WLS2)
+- OS: Ubuntu 22.04 LTS (WLS2, Windows 11)
 - Python: 3.10.12
 - Numpy: 1.21.5
 - Matplotlib: 3.5.1
+- QE: 6.3 or Later
 
 ---
