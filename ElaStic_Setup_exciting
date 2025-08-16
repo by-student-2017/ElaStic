@@ -144,7 +144,7 @@ if (num == 2 ): mthd = 'Stress'
 #%!%!%--- Reading the order of the elastic constants ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 print('\n     2nd  ---=>  2    \
        \n     3rd  ---=>  3    ')
-ordr = input('>>>> Please choose the order of the elastic constant (choose \'2\' or \'3\'): ')
+ordr = int(input('>>>> Please choose the order of the elastic constant (choose \'2\' or \'3\'): '))
 if (ordr != 2 and ordr != 3 ):
     sys.exit("\n.... Oops ERROR: Choose '2' or '3' \n")
 #--------------------------------------------------------------------------------------------------
@@ -245,11 +245,11 @@ print('\n     '+ SGN_explanation +'\
 
 #%!%!%--- Reading the maximum Lagrangian strain ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 if (mthd == 'Energy'):
-    mdr = input('\n>>>> Please enter the maximum Lagrangian strain '\
-                '\n     The suggested value is between 0.030 and 0.150: ')
+    mdr = int(input('\n>>>> Please enter the maximum Lagrangian strain '\
+                '\n     The suggested value is between 0.030 and 0.150: '))
 if (mthd == 'Stress'):
-    mdr = input('\n>>>> Please enter the maximum Lagrangian strain '\
-                '\n     The suggested value is between 0.0010 and 0.0050: ')
+    mdr = int(input('\n>>>> Please enter the maximum Lagrangian strain '\
+                '\n     The suggested value is between 0.0010 and 0.0050: '))
 
 if (1 < mdr or mdr < 0):
     sys.exit('\n.... Oops ERROR: The maximum Lagrangian strain is out of range !!!!!!\n')
@@ -259,7 +259,7 @@ print('     The maximum Lagrangian strain is '+ str(mdr) + '\n')
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the number of the distorted structures ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-NoP = input('>>>> Please enter the number of the distorted structures [odd number > 4]: ')
+NoP = int(input('>>>> Please enter the number of the distorted structures [odd number > 4]: '))
 NoP = int(abs(NoP))
 
 if (NoP < 5):
