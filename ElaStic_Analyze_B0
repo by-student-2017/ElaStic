@@ -118,8 +118,8 @@ print( '\
 \n     Please specify the "volume unit".\
 \n     [Bohr^3] ---=> 1                 \
 \n     [Ang.^3] ---=> 2                 ')
-num = input(">>>> Choose '1' or '2': ")
-if (num != 1 and num != 2 ): sys.exit("\n.... Oops ERROR: Choose '1' or '2' \n")
+num = int(input(">>>> Choose '1' or '2': ")
+if (num != 1 and num != 2 ): sys.exit("\n.... Oops ERROR: Choose '1' or '2' \n"))
 if (num == 1): v_unit = 'Bohr^3'; v2Bhr= 1.
 if (num == 2): v_unit = 'Ang.^3'; v2Bhr= (Bohr*1e+10)**-3.
 
@@ -128,7 +128,7 @@ print( '\
 \n     Rydberg  -------=> 1             \
 \n     Hartree  -------=> 2             \
 \n     electron Volt --=> 3             ')
-num = input(">>>> Choose '1', '2', or '3': ")
+num = int(input(">>>> Choose '1', '2', or '3': "))
 if (num != 1 and num != 2 and num != 3 ):
     sys.exit("\n.... Oops ERROR: Choose '1', '2', or '3'  \n")
 if (num == 1): e_unit = 'Ryd'; e2Ryd= 1.

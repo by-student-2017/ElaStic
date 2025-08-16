@@ -162,7 +162,7 @@ ibravDic = {            \
 #%!%!%--- Reading the method of the elastic constants calculations ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 print('\n     Energy  ---=>  1    \
        \n     Stress  ---=>  2    ')
-num = input('>>>> Please choose the method of the calculation (choose 1 or 2): ')
+num = int(input('>>>> Please choose the method of the calculation (choose 1 or 2): '))
 if (num != 1 and num != 2):
     sys.exit("\n.... Oops ERROR: Choose '1' or '2' \n")
 if (num == 1 ): mthd = 'Energy'
