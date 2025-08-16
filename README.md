@@ -32,11 +32,11 @@
 ---
 
 ## Usage
-1. python3 $HOME/Elastic2020/ElaStic_Setup
+1. python3 $HOME/ElaStic/ElaStic_Setup
 2. (run exciting, WIEN2k or QE) (QE: *.in -> *.out)
-3. python3 $HOME/Elastic2020/ElaStic_Analyze
+3. python3 $HOME/ElaStic/ElaStic_Analyze
 4. (From the figures shown in ElaStic_2nd.in or ElaStic_3rd.in, specify the eta_max and Fit_order for a fit that is converging at a plateau and not too large in order.)
-5. python3 $HOME/Elastic2020/ElaStic_Result
+5. python3 $HOME/ElaStic/ElaStic_Result
 
 ---
 
