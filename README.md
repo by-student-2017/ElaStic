@@ -135,4 +135,17 @@
 - Matplotlib: 3.5.1
 - QE: 6.3 or Later
 
+## QE v6.8 Installation
+1. sudo apt update
+2. sudo apt -y install gfortran g++ build-essential make libopenblas-dev libopenmpi-dev libfftw3-dev
+3. sudo apt -y install gnuplot ghostscript
+3. wget https://github.com/QEF/q-e/archive/refs/tags/qe-6.8.tar.gz
+4. tar xvf qe-6.8.tar.gz
+5. cd q-e-qe-6.8
+6. ./configure
+7. make pwall
+8. sudo make install
+
+
+
 ---
