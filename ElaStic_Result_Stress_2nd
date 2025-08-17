@@ -709,10 +709,10 @@ for i in range(6):
 print('\n\n    Elastic compliance matrix in 1/GPa: \n', file=fo)
 
 for i in range(0,6):
-    print >>fo, '',
+    print('', end='', file=fo)
     for j in range(0,6):
-        print >>fo, '%11.5f'%(S[i,j]),
-    print >>fo
+        print('%11.5f' % (S[i, j]), end=' ', file=fo)
+     print(file=fo)
 
 print('\n' + lineseparator + '\n', file=fo)
 
