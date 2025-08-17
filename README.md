@@ -134,6 +134,7 @@
 - Numpy: 1.21.5
 - Matplotlib: 3.5.1
 - QE: 6.3 or Later
+- lxml: 4.8.0
 
 ## QE v6.8 Installation
 1. sudo apt update
@@ -146,6 +147,18 @@
 7. make pwall
 8. sudo make install
 
-
+## Exciting 
+1. sudo apt update
+2. sudo apt -y install gfortran g++ build-essential make libopenblas-dev libopenmpi-dev libfftw3-dev
+3. sudo apt -y install gnuplot ghostscript
+4. sudo apt -y install python3-all-dev graphviz xsltproc
+5. pip3 install lxml
+6. wget https://github.com/exciting/exciting/archive/refs/tags/neon.0.1.tar.gz
+7. tar xvf neon.0.1.tar.gz
+8. cd exciting-neon.0.1
+9. cp build/platforms/make.inc.gfortran10+ build/make.inc
+10. make mpi
+11. pip install excitingtools==1.6.0
+12. make test
 
 ---
