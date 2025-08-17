@@ -153,12 +153,15 @@
 3. sudo apt -y install gnuplot ghostscript
 4. sudo apt -y install python3-all-dev graphviz xsltproc
 5. pip3 install lxml
-6. wget https://github.com/exciting/exciting/archive/refs/tags/neon.0.1.tar.gz
-7. tar xvf neon.0.1.tar.gz
-8. cd exciting-neon.0.1
-9. cp build/platforms/make.inc.gfortran10+ build/make.inc
-10. make mpi
-11. pip install excitingtools==1.6.0
-12. make test
+6. cd $HOME
+7. wget https://github.com/exciting/exciting/archive/refs/tags/neon.0.1.tar.gz
+8. tar xvf neon.0.1.tar.gz
+9. cd exciting-neon.0.1
+10. cp build/platforms/make.inc.gfortran10+ build/make.inc
+11. make serial
+12. make mpi
+13. pip install excitingtools==1.6.0
+14. make test
+15. echo 'export PATH="$HOME/exciting-neon.0.1/bin:$PATH"' >> ~/.bashrc
 
 ---
