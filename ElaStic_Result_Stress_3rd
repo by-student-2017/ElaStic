@@ -300,47 +300,47 @@ INFO.close()
 # NoD = Number of Deformation
 if (1 <= SGN and SGN <= 2):      # Triclinic
     LC = 'N'
-    NoD= 1 # ?
+    NoD= 5
 
 elif(3 <= SGN and SGN <= 15):    # Monoclinic
     LC = 'M'
-    NoD= 1 # ?
+    NoD= 4
 
 elif(16 <= SGN and SGN <= 74):   # Orthorhombic
     LC = 'O'
-    NoD= 1 # ?
+    NoD= 3
 
 elif(75 <= SGN and SGN <= 88):   # Tetragonal II
     LC = 'TII'
-    NoD= 1 # ?
+    NoD= 2
   
 elif(89 <= SGN and SGN <= 142):  # Tetragonal I
     LC = 'TI'
-    NoD= 1 # ?
+    NoD= 3
 
 elif(143 <= SGN and SGN <= 148): # Rhombohedral II 
     LC = 'RII'
-    NoD= 1 # ?
+    NoD= 2
 
 elif(149 <= SGN and SGN <= 167): # Rhombohedral I
     LC = 'RI'
-    NoD= 1 # ?
+    NoD= 3
 
 elif(168 <= SGN and SGN <= 176): # Hexagonal II
     LC = 'HII'
-    NoD= 1 # ?
+    NoD= 2
 
 elif(177 <= SGN and SGN <= 194): # Hexagonal I
     LC = 'HI'
-    NoD= 1 # ?
+    NoD= 3
 
 elif(195 <= SGN and SGN <= 206): # Cubic II
     LC = 'CII'
-    NoD= 1 # ?
+    NoD= 2
 
 elif(207 <= SGN and SGN <= 230): # Cubic I
     LC = 'CI'
-    NoD= 1 # ?
+    NoD= 3
 
 else: sys.exit('\n.... Oops ERROR: WRONG Space-Group Number !?!?!?\n')
 #--------------------------------------------------------------------------------------------------
