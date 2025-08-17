@@ -325,7 +325,7 @@ for i in range(1, ECs+1):
                         etatmp.append(strain[l])
                         enetmp.append(energy[l])
 
-                Yfit = polyval(np.polyfit(etatmp,enetmp, j), strain[k])
+                Yfit = np.polyval(np.polyfit(etatmp,enetmp, j), strain[k])
                 S    = S + (Yfit-Y)**2
 
             CV = math.sqrt(S/len(strain))
