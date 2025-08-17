@@ -41,6 +41,30 @@
 
 ---
 
+## Tutorial
+### QE (energy)
+1. cd tutorials/QE
+2. ElaStic_Setup
+   (or python3 $ElaSticROOT/ElaStic_Setup)
+3. run_qe_energy.sh
+4. ElaStic_Analyze
+   (or python3 $HOME/ElaStic/ElaStic_Analyze)
+6. (Change eta_max and Fit_order in ElaStic_2nd.in (for example, to 0.030 and 4).)
+7. ElaStic_Result
+   (or python3 $HOME/ElaStic/ElaStic_Result)
+### QE (stress)
+1. cd tutorials/QE
+2. ElaStic_Setup
+   (or python3 $ElaSticROOT/ElaStic_Setup)
+3. run_qe_stress.sh
+4. ElaStic_Analyze
+   (or python3 $HOME/ElaStic/ElaStic_Analyze)
+6. (Change eta_max and Fit_order in ElaStic_2nd.in (for example, to 0.030 and 3).)
+7. ElaStic_Result
+   (or python3 $HOME/ElaStic/ElaStic_Result)
+
+---
+
 ## Postprocessing
 - ElaStic_xyz2XYZ: Transformation of tensors using coordinate transformation
 - ElaStic_Analyze_B0: Analysis of strain dependence of bulk modulus B0 and its pressure derivative B0'
