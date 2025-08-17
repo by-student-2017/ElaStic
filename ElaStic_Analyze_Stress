@@ -89,7 +89,7 @@ Ls_Dic={                       \
 '38':[ 3.,-5.,-1., 6., 2.,-4.],\
 '39':[-4.,-6., 5., 1.,-3., 2.],\
 '40':[ 5., 4., 6.,-2.,-1.,-3.],\
-'41':[-6., 3.,-2., 5.,-4., 1.]}
+'41':[-6., 3.,-2., 5.,-4., 1.],\
 #
 # I've added a temporary definition, so check it out. (42 - 48)
 '42':[ 1., 1., 0., 2., 0., 0.],\
@@ -98,7 +98,7 @@ Ls_Dic={                       \
 '45':[ 1., 1., 1., 2., 2., 2.],\
 '46':[ 1.,-1., 1.,-2., 2.,-2.],\
 '47':[ 2., 0., 0., 0., 2., 2.],\
-'48':[ 0., 2., 2., 2., 0., 0.],}
+'48':[ 0., 2., 2., 2., 0., 0.]}
 
 #%!%!%--- Reading the "I'NFO_ElaStic" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 INFO=open('INFO_ElaStic', 'r')
@@ -492,10 +492,10 @@ for i in range(1, NoD+1):
                         else:            
                             etatmp.append(strain[q])
                             strtmp.append(stress[q])
-                    Yfit = polyval(polyfit(etatmp, strtmp, j), strain[k])
+                    Yfit = np.polyval(np.polyfit(etatmp, strtmp, j), strain[k])
                     S = S + (Yfit-Y)**2
 
-                CV = sqrt(S/len(strain))
+                CV = np.sqrt(S/len(strain))
                 print('%13.10f' % emax, '%18.6f' % CV, file=fE)
 
                 if (abs(strain[0]+emax) < 1.e-7):
