@@ -147,7 +147,7 @@
 7. make pwall
 8. sudo make install
 
-## Exciting 
+## Exciting neon.0.1 Installation
 1. sudo apt update
 2. sudo apt -y install gfortran g++ build-essential make libopenblas-dev libopenmpi-dev libfftw3-dev
 3. sudo apt -y install gnuplot ghostscript
