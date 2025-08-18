@@ -43,6 +43,9 @@ for Dstn in $label ; do
         echo '        +--------------------------------------+'
         echo '        | SCF calculation of "'${Dstn_num}'" starts |'
         echo '        +--------------------------------------+'
+        setrmt -auto
+        x sgroup
+        cp -f ${Dstn_num}.struct_sgroup ${Dstn_num}.struct
         init_lapw -b -red 5.0 -vxc 13 -ecut -6.0 -rkmax 7.0 -numk 1000
         time run_lapw -NI -i 200
         #time runsp_lapw -NI -i 200
