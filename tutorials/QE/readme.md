@@ -24,6 +24,13 @@
 5. ElaStic_Result
 6. cat ElaStic_2nd.out
 
+## Troubleshooting
+- If it doesn't work, give it permission to run:
+```
+cd $HOME/ElaStic
+chmod +x *
+```
+
 ## Results: Diamond Si (Energy and 2nd order)
 ```
 ElaStic_2nd.out found in Energy-vs-Strain. Displaying contents:
