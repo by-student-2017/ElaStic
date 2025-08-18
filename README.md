@@ -152,7 +152,7 @@
 2. sudo apt -y install gfortran g++ build-essential make libopenblas-dev libopenmpi-dev libfftw3-dev
 3. sudo apt -y install gnuplot ghostscript
 4. sudo apt -y install python3-all-dev graphviz xsltproc
-5. sudo apt -y install libhdf5-dev fftw3-dev
+5. sudo apt install hdf5-helpers libhdf5-dev libhdf5-openmpi-dev fftw3-dev
 6. pip3 install lxml
 7. cd $HOME
 8. mkdir neon.21
