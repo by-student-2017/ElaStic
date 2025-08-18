@@ -16,6 +16,7 @@
   - full second-order elastic tensors (elastic constants) for all crystal lattice types
   - third-order elastic constants for cubic, hexagonal, and rhombohedral crystals
   - Generation of deformed structures, evaluation of energy and stress, and analysis using polynomial fitting
+- Further improvements are difficult for me (By STUDENT), so I will leave it to future researchers.
 
 ---
 
