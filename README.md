@@ -4,6 +4,9 @@
 
 ## Features
 - Language: Python3 (Migrating from python2 to python3)
+- Calculation target
+  - Mode: energy: WIEN2k, exciting and QE
+  - Mode: stress: QE
 - External Tools:
   - SGROUP: Determine space group and symmetry operations (included in adon_v1_0.tar.gz)
   - DFT Code: Supports Exciting, WIEN2k, and Quantum ESPRESSO
@@ -12,8 +15,6 @@
   - full second-order elastic tensors (elastic constants) for all crystal lattice types
   - third-order elastic constants for cubic, hexagonal, and rhombohedral crystals
   - Generation of deformed structures, evaluation of energy and stress, and analysis using polynomial fitting
-  - Mode: energy: WIEN2k, exciting and QE
-  - Mode: stress: QE
 
 ---
 
