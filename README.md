@@ -7,7 +7,7 @@
 - Calculation target
   - Mode: energy: WIEN2k, exciting and QE (Quantum Espresso, PWscf)
   - Mode: stress: QE (Quantum Espresso, PWscf)
-  - Version: exciting: neon series, QE: v6.8 or Later
+  - Version: WIEN2k:ver.16, exciting: neon series, QE: v6.8 or Later
 - External Tools:
   - SGROUP: Determine space group and symmetry operations (included in adon_v1_0.tar.gz)
   - DFT Code: Supports Exciting, WIEN2k, and Quantum ESPRESSO
@@ -125,6 +125,8 @@
 - Matplotlib: 3.5.1
 - QE: 6.3 or Later
 - lxml: 4.8.0
+- exciting: neon-21
+- WIEN2k: ver.16
 
 ## QE v6.8 Installation
 1. sudo apt update
