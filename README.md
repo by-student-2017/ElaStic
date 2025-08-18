@@ -113,6 +113,8 @@
 - [2] excitingscripts: https://github.com/sr76/excitingscripts/
 - [3] excitingscripts 1.0.0: https://pypi.org/project/excitingscripts/
 - [4] Elastic1.0-wien2k: https://github.com/jazairdz/Elastic1.0-wien2k
+- [5] WT16: https://rashid-phy.github.io/me/wien2k.html
+- [6] https://www.youtube.com/@phy22: https://www.youtube.com/hashtag/physicsschool20
 
 ---
 
