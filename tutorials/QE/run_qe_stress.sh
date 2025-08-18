@@ -23,8 +23,13 @@ for infile in Dst*_*.in; do
   # output file (e.g., Dst01_01.out)
   outfile="${infile%.in}.out"
   
+  echo
+  echo '        +--------------------------------------+'
+  echo '        | SCF calculation of "'${base}'" starts |'
+  echo '        +--------------------------------------+'
   echo "Running $infile -> $outfile"
-  mpirun -np ${NCPUs} pw.x < "$infile" > "$outfile"
+  time mpirun -np ${NCPUs} pw.x < "$infile" > "$outfile"
+  date
   
   cp "$outfile" "./../${subdir}/${base}/$outfile"
 done
