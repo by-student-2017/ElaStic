@@ -57,6 +57,7 @@ ElaStic_Setup_exciting < set_energy_2nd.txt
 #  cp input.xml ./../${subdir}/${base}/
 #  mv *.OUT ./../${subdir}/${base}/
 #done
+#cd ../
 #
 # Run Exciting calculations for each Dst*_*,in file
 label=`ls -d Dst??`
@@ -77,8 +78,6 @@ for Dstn in $label ; do
     done
     cd ../
 done
-
-cd ../
 
 # Return to the main directory and run ElaStic_Analyze_Energy
 ElaStic_Analyze
