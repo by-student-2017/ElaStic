@@ -4,7 +4,7 @@
 
 # Set number of threads and CPUs
 #export OMP_NUM_THREADS=1
-#NCPUs=$(($(nproc) / 2))
+NCPUs=$(($(nproc) / 2))
 export OMP_NUM_THREADS=${NCPUs} # OpenMP Parallelization
 
 echo "     +---------------------------------------------------------------+"
@@ -26,13 +26,12 @@ echo ">>>> Please choose (1, 2, or 3): 2"
 cat <<EOF > set_energy_2nd.txt
 1
 2
-input.xml
 0.030
 6
 EOF
 
 # Run ElaStic_Setup with the input file
-python3 $HOME/ElaStic/ElaStic_Setup_exciting < set_energy_2nd.txt
+python3 $HOME/ElaStic/ElaStic_Setup_WIEN2k < set_energy_2nd.txt
 
 bash $HOME/ElaStic/ElaStic_WIEN2k_init.sh
 
