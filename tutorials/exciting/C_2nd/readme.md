@@ -12,7 +12,8 @@
 5. ElaStic_Result
 6. cat ElaStic_2nd.out
 
-## Result: Diamond C (Ref: C11 = 1076, C12 = 125, C44 = 577, B0 = 452 [GPa])
+## Result: Diamond C
+- (Ref: C11 = 1076, C12 = 125, C44 = 577, B0 = 452 [GPa])
 ```
 ElaStic_2nd.out found in Energy-vs-Strain. Displaying contents:
     The output of ElaStic code
@@ -192,4 +193,5 @@ ElaStic_2nd.out found in Energy-vs-Strain. Displaying contents:
     ... Have a G00D Day, Week, Month, Year, and Century (if you are lucky) ...
                Bye-Bye! Tschuess! Ciao! Poka! Zia Jian! KhodaHafez!
 ```
+
 
