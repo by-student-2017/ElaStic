@@ -408,7 +408,12 @@ for i in range(len(INFO_P)):
     print('LOCAL ROT MATRIX:   ' + INFO_P[i][7], file=fP)
     print('                    ' + INFO_P[i][8], file=fP)
     print('                    ' + INFO_P[i][9], file=fP)
-print('   0      NUMBER OF SYMMETRY OPERATIONS', file=fP)
+#print('   0      NUMBER OF SYMMETRY OPERATIONS', file=fP)
+print('   1      NUMBER OF SYMMETRY OPERATIONS', file=fP)
+print(' 1 0 0 0.00000000', file=fP)
+print(' 0 1 0 0.00000000', file=fP)
+print(' 0 0 1 0.00000000', file=fP)
+print('       1', file=fP)
 fP.close()
 #--------------------------------------------------------------------------------------------------
 
