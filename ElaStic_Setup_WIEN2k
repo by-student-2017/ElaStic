@@ -795,7 +795,7 @@ for i in Lag_strain_list:
         Plins.insert(3, Lattice_Parameters+'\n')
 
         for i in range(len(Plins)):
-            print(Plins[i], end=' ', file=fo)
+            print(Plins[i], end='', file=fo)
         fo.close()
         #------------------------------------------------------------------------------------------
         os.chdir('../')
