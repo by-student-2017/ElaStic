@@ -301,9 +301,9 @@ else: stretch=np.array(map(float,stretchstr[0].split()))
 basevectsn = doc.xpath('//basevect/text()')
 bv = []
 for basevect in basevectsn:
-    bv.append(map(float,basevect.split()))
+    bv.append(list(map(float, basevect.split())))
 
-M_old= np.array(bv)
+M_old = np.array(bv)
 D    = np.linalg.det(M_old)
 V0   = abs(stretch[0]*stretch[1]*stretch[2]*scale[0]**3*D)
 #--------------------------------------------------------------------------------------------------
