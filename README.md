@@ -155,15 +155,13 @@
 5. sudo apt install hdf5-helpers libhdf5-dev libhdf5-openmpi-dev fftw3-dev
 6. pip3 install lxml
 7. cd $HOME
-8. mkdir neon.21
-9. cd neon.21
+8. mkdir exciting-neon.21
+9. cd exciting-neon.21
 10. wget https://exciting-code.org/uploads/exciting/exciting.neon-21.tar.gz
 11. tar xvf exciting.neon-21.tar.gz
 12. cp build/platforms/make.inc.gfortran10+.hdf5.fftw3 build/make.inc
 13. make mpi
-14. pip install excitingtools==1.8.3
-15. make test
-16. echo 'export PATH="$HOME/exciting-neon.0.1/bin:$PATH"' >> ~/.bashrc
+14. echo 'export PATH="$HOME/exciting-neon.21/bin:$PATH"' >> ~/.bashrc
 
 ## Exciting neon.0.1 Installation
 1. sudo apt update
