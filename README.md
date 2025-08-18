@@ -31,8 +31,9 @@
 9. make
 10. cd ..
 11. cp SpaceGroups/sgroup ./sgroup
-12. echo 'export ElaSticROOT=$HOME/ElaStic' >> ~/.bashrc
-13. echo 'export PATH="$ElaSticROOT:$PATH"' >> ~/.bashrc
+12. chmod +x *
+13. echo 'export ElaSticROOT=$HOME/ElaStic' >> ~/.bashrc
+14. echo 'export PATH="$ElaSticROOT:$PATH"' >> ~/.bashrc
 
 ---
 
