@@ -10,8 +10,7 @@
 1. ElaStic_Setup
 2. (input your calculation conditions)
 3. bash run_qe_energy.sh
-4. ElaStic_exciting_analyze.py
-   - or ElaStic_Analyze
+4. ElaStic_Analyze
 5. ElaStic_Result
 6. cat ElaStic_2nd.out
 
@@ -19,8 +18,7 @@
 1. ElaStic_Setup
 2. (input your calculation conditions)
 3. bash run_qe_stress.sh
-4. ElaStic_exciting_analyze.py
-   - or ElaStic_Analyze
+4. ElaStic_Analyze
 5. ElaStic_Result
 6. cat ElaStic_2nd.out
 
@@ -35,8 +33,7 @@ chmod +x *
 python3 $HOME/ElaStic/ElaStic_Setup
 # (input your calculation conditions)
 bash $HOME/ElaStic/run_qe_stress.sh
-python3 $HOME/ElaStic/ElaStic_exciting_analyze.py
-# or python3 $HOME/ElaStic/ElaStic_Analyze
+python3 $HOME/ElaStic/ElaStic_Analyze
 python3 $HOME/ElaStic/ElaStic_Result
 cat ElaStic_2nd.out
 ```
