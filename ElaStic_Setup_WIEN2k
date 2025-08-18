@@ -269,7 +269,7 @@ if (Ltype == 'H'):
     Ltype  = 'P'
  
 if (Ltype == 'R'):
-    a_R    = sqrt((a3**2.)/9. + (a1**2.)/3.)
+    a_R    = np.sqrt((a3**2.)/9. + (a1**2.)/3.)
     alpha_R= 2.*asin(a1/(2.*a_R))
     a1     = a_R
     a2     = a_R
@@ -485,7 +485,7 @@ if (LC == 'HI' or \
     M_old[0,2] = 0.
 
     M_old[1,0] =-a2/2.
-    M_old[1,1] = a2*sqrt(3.)/2.
+    M_old[1,1] = a2*np.sqrt(3.)/2.
     M_old[1,2] = 0.
 
     M_old[2,0] = 0.
@@ -504,8 +504,8 @@ if (LC == 'RI' or \
         SGN == 167 ):
 
         M_old[0,0] = a1*sin(alpha/2.)
-        M_old[0,1] =-a1*sin(alpha/2.)/sqrt(3.)
-        M_old[0,2] = a1*sqrt(1.-(4./3.*(sin(alpha/2.))**2.))
+        M_old[0,1] =-a1*sin(alpha/2.)/np.sqrt(3.)
+        M_old[0,2] = a1*np.sqrt(1.-(4./3.*(sin(alpha/2.))**2.))
 
         M_old[1,0] = 0.
         M_old[1,1] =-M_old[0,1]*2.
@@ -521,7 +521,7 @@ if (LC == 'RI' or \
         M_old[0,2] = 0.
 
         M_old[1,0] =-a2/2.
-        M_old[1,1] = a2*sqrt(3.)/2.
+        M_old[1,1] = a2*np.sqrt(3.)/2.
         M_old[1,2] = 0.
 
         M_old[2,0] = 0.
@@ -554,7 +554,7 @@ if (LC == 'N'):
 
     M_old[2,0] = a3*cos(beta)
     M_old[2,1] =(a3*(cos(alpha)-cos(beta)*cos(gamma)))/sin(gamma)    
-    M_old[2,2] = a3*sqrt(1.-(cos(alpha))**2.-(cos(beta))**2.-(cos(gamma))**2. \
+    M_old[2,2] = a3*np.sqrt(1.-(cos(alpha))**2.-(cos(beta))**2.-(cos(gamma))**2. \
                + 2.*cos(alpha)*cos(beta)*cos(gamma))/sin(gamma)
 
 D = np.linalg.det(M_old)
@@ -737,12 +737,12 @@ for i in Lag_strain_list:
 
         norm       = 1.0
         eps_matrix = eta_matrix
-        if (linalg.norm(eta_matrix) > 0.7):
+        if (np.linalg.norm(eta_matrix) > 0.7):
             sys.exit('\n.... Oops ERROR: Too large deformation!\n') 
 
         while( norm > 1.e-10 ):
             x          = eta_matrix - np.dot(eps_matrix, eps_matrix)/2.
-            norm       = linalg.norm(x - eps_matrix)      
+            norm       = np.linalg.norm(x - eps_matrix)      
             eps_matrix = x
 
         #--- Calculating the M_new matrix ---------------------------------------------------------
@@ -753,9 +753,9 @@ for i in Lag_strain_list:
         M_new      = np.dot(M_old, def_matrix)
 
 #------ Calculating the distorted lattice parameters and angles -----------------------------------
-        A1    = sqrt(M_new[0,0]**2. + M_new[0,1]**2. + M_new[0,2]**2.)
-        A2    = sqrt(M_new[1,0]**2. + M_new[1,1]**2. + M_new[1,2]**2.)
-        A3    = sqrt(M_new[2,0]**2. + M_new[2,1]**2. + M_new[2,2]**2.)
+        A1    = np.sqrt(M_new[0,0]**2. + M_new[0,1]**2. + M_new[0,2]**2.)
+        A2    = np.sqrt(M_new[1,0]**2. + M_new[1,1]**2. + M_new[1,2]**2.)
+        A3    = np.sqrt(M_new[2,0]**2. + M_new[2,1]**2. + M_new[2,2]**2.)
 
         ALPHA = degrees(acos((M_new[1,0]*M_new[2,0] +\
                               M_new[1,1]*M_new[2,1] +\
