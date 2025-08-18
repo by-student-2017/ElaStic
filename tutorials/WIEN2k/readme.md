@@ -1,5 +1,6 @@
 # Usage
 - When I tried it with diamond Si, the results for the elastic tensor were a bit concerning compared to others, and the time required was about ten times longer than exciting. I don't recommend using WIEN2k because it's possible that my modifications are not working properly (although the use of OpenMP parallelization may also be a reason).
+- This is for people who absolutely must stick with WIEN2k. Further improvements are difficult for me to make, so I'll leave it to future researchers.
 
 ## Step by step
 1. ElaStic_Setup
