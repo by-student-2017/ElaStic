@@ -1,45 +1,81 @@
 #!/bin/bash
 
+EXECUTABLE=$EXCITINGROOT/bin/exciting_purempi
+
 # Set number of threads and CPUs
 export OMP_NUM_THREADS=1
 NCPUs=$(($(nproc) / 2))
 
-SETUP-excitingroot.sh
+echo "     +---------------------------------------------------------------+"
+echo "     |***************************************************************|"
+echo "     |*                                                             *|"
+echo "     |*                 WELCOME TO THE ElaStic CODE                 *|"
+echo "     |*        ElaStic Version 1.1, Release Date: 2013-01-01        *|"
+echo "     |*                                                             *|"
+echo "     |***************************************************************|"
+echo "     +---------------------------------------------------------------+"
+echo ""
+echo "     Which DFT code would you like to apply for the calculations? "
+echo "     exciting  ---------=>  1                                     "
+echo "     WIEN2k    ---------=>  2                                     "
+echo "     Quantum ESPRESSO --=>  3)"
+echo ">>>> Please choose (1, 2, or 3): 1"
 
 # Create a temporary input file for ElaStic_Setup
-cat <<EOF > set_stress.txt
+cat <<EOF > set_energy_2nd.txt
 1
 2
-case.elastic.in
+input.xml
 0.030
 6
 EOF
 
 # Run ElaStic_Setup with the input file
-ElaStic_Setup < set_stress.txt
+ElaStic_Setup_exciting < set_energy_2nd.txt
 
-cd Structures_exciting 
-
+## Run Exciting calculations for each Dst*_*,in file
+#cd Structures_exciting
+#for infile in Dst*_*.xml; do
+#  
+#  # base = Dst01_01
+#  base="${infile%.xml}"
+#  
+#  # subdir = Dst01
+#  subdir="${base%%_*}"
+#  
+#  echo "${infile} -> input.xml"
+#  cp ${infile} input.xml
+#  sed -i "s|\$EXCITINGROOT|${EXCITINGROOT}|g" input.xml
+#  
+#  echo
+#  echo '        +--------------------------------------+'
+#  echo '        | SCF calculation of "'${base}'" starts |'
+#  echo '        +--------------------------------------+'
+#  time mpirun -np ${NCPUs} $EXECUTABLE | tee output.screen
+#  date
+#  
+#  cp input.xml ./../${subdir}/${base}/
+#  mv *.OUT ./../${subdir}/${base}/
+#done
+#
 # Run Exciting calculations for each Dst*_*,in file
-for infile in Dst*_*.xml; do
-  
-  # base = Dst01_01
-  base="${infile%.xml}"
-  
-  # subdir = Dst01
-  subdir="${base%%_*}"
-  
-  cp ${infile} input.xml
-  
-  # output file (e.g., Dst01_01.out)
-  outfile="${infile%.in}.out"
-  
-  echo "Running $infile -> $outfile"
-  mpirun -np ${NCPUs} exciting_purempi
-  
-  cp 
-  
-  cp "$outfile" "./../${subdir}/${base}/$outfile"
+label=`ls -d Dst??`
+for Dstn in $label ; do
+    cd $Dstn
+    Dstn_num_list=`ls -d ${Dstn}_??`
+    for Dstn_num in $Dstn_num_list ; do
+        cd $Dstn_num/
+        cp -f $Dstn_num.xml input.xml
+        sed -i "s|\$EXCITINGROOT|${EXCITINGROOT}|g" input.xml
+        echo
+        echo '        +--------------------------------------+'
+        echo '        | SCF calculation of "'${Dstn_num}'" starts |'
+        echo '        +--------------------------------------+'
+        time mpirun -np ${NCPUs} $EXECUTABLE | tee output.screen
+        date
+        cd ../
+    done
+    cd ../
 done
 
 cd ../
