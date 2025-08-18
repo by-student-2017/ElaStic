@@ -18,7 +18,7 @@ chmod +x *
 ```
 python3 $HOME/ElaStic/ElaStic_Setup
 # (input your calculation conditions)
-bash $HOME/ElaStic/run_qe_stress.sh
+bash $HOME/ElaStic/ElaStic_WIEN2k_init.sh
 python3 $HOME/ElaStic/ElaStic_Analyze
 python3 $HOME/ElaStic/ElaStic_Result
 cat ElaStic_2nd.out
