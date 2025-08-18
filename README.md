@@ -162,7 +162,7 @@
 12. cp build/platforms/make.inc.gfortran10+.hdf5.fftw3 build/make.inc
 13. make mpi
 14. echo 'export PATH="$HOME/exciting-neon.21/bin:$PATH"' >> ~/.bashrc
-15. echo 'export PATH="$HOME/exciting-neon.21/tutorial_scripts:$PATH"' >> ~/.bashrc
+15. echo 'export PATH="$HOME/exciting-neon.21/tools/tutorial_scripts:$PATH"' >> ~/.bashrc
 
 ## Exciting neon.0.1 Installation
 1. sudo apt update
