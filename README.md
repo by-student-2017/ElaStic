@@ -46,26 +46,7 @@
 ---
 
 ## Tutorial
-### QE (energy)
-1. cd tutorials/QE
-2. ElaStic_Setup
-   - or python3 $ElaSticROOT/ElaStic_Setup
-3. run_qe_energy.sh
-4. ElaStic_Analyze
-   - or python3 $HOME/ElaStic/ElaStic_Analyze
-6. (Change eta_max and Fit_order in ElaStic_2nd.in (i.g., to 0.030 and 4).)
-7. ElaStic_Result
-   - or python3 $HOME/ElaStic/ElaStic_Result
-### QE (stress)
-1. cd tutorials/QE
-2. ElaStic_Setup
-   - or python3 $ElaSticROOT/ElaStic_Setup
-3. run_qe_stress.sh
-4. ElaStic_Analyze
-   - or python3 $HOME/ElaStic/ElaStic_Analyze
-6. (Change eta_max and Fit_order in ElaStic_2nd.in (i.g., to 0.0050 and 3).)
-7. ElaStic_Result
-   - or python3 $HOME/ElaStic/ElaStic_Result
+- The tutorial directory contains a readme.md file that explains how to calculate the code. Please refer to it.
 
 ---
 
