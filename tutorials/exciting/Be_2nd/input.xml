@@ -2,7 +2,7 @@
  
    <title>Be: 2nd-order elastic constants</title>
  
-   <structure speciespath="/home/inukai/exciting-neon.21/species">
+   <structure speciespath="$EXCITINGROOT/species">
  
       <crystal scale="4.3207">
          <basevect>  1.00000000  0.00000000  0.00000000 </basevect>
