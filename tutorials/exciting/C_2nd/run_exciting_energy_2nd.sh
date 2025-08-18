@@ -2,6 +2,8 @@
 
 EXECUTABLE=$EXCITINGROOT/bin/exciting_purempi
 
+# Note: "$EXCITINGROOT" = "$HOME/ElaStic"
+
 # Set number of threads and CPUs
 export OMP_NUM_THREADS=1
 NCPUs=$(($(nproc) / 2))
