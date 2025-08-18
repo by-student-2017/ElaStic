@@ -12,6 +12,23 @@
 5. ElaStic_Result
 6. cat ElaStic_2nd.out
 
+## Troubleshooting
+- If it doesn't work, give it permission to run:
+```
+cd $HOME/ElaStic
+chmod +x *
+```
+- Problems may occur if you are using Elastic2020 etc. at the same time. It is recommended to specify the absolute path and run it. An example is shown below.
+```
+python3 $HOME/ElaStic/ElaStic_Setup
+# (input your calculation conditions)
+bash $HOME/ElaStic/ElaStic@exciting-submit.sh
+python3 $HOME/ElaStic/ElaStic_exciting_analyze.py
+# or python3 $HOME/ElaStic/ElaStic_Analyze
+python3 $HOME/ElaStic/ElaStic_Result
+cat ElaStic_2nd.out
+```
+
 ## Results: HCP Be
 ```
 ElaStic_2nd.out found in Energy-vs-Strain. Displaying contents:
@@ -192,4 +209,5 @@ ElaStic_2nd.out found in Energy-vs-Strain. Displaying contents:
     ... Have a G00D Day, Week, Month, Year, and Century (if you are lucky) ...
                Bye-Bye! Tschuess! Ciao! Poka! Zia Jian! KhodaHafez!
 ```
+
 
