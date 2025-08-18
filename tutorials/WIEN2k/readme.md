@@ -1,4 +1,4 @@
-# Usage
+# Usage (It never happened again. I don't recommend it.)
 
 ## Step by step
 1. ElaStic_Setup
