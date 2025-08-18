@@ -28,6 +28,7 @@ import subprocess
 import numpy as np
 from math import degrees
 from math import acos, degrees
+from math import radians
 
 #%!%!%--- DICTIONARIS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 Ls_Dic={                       \
@@ -451,9 +452,9 @@ if (mdr/ptn <= interval):
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Making the M_old matrix ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
-alpha = radians(alpha)
-beta  = radians(beta)
-gamma = radians(gamma)
+alpha = math.radians(alpha)
+beta  = math.radians(beta)
+gamma = math.radians(gamma)
 
 M_old = np.zeros((3,3))
 
