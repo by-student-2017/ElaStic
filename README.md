@@ -112,6 +112,7 @@
 - [1] R. Golesorkhtabar, P. Pavone, J. Spitaler, P. Puschnig, and C. Draxl, ElaStic: A tool for calculating second-order elastic constants from first principles, Comp. Phys. Commun. 184, 1861 (2013).: https://exciting-code.org/elastic/
 - [2] excitingscripts: https://github.com/sr76/excitingscripts/
 - [3] excitingscripts 1.0.0: https://pypi.org/project/excitingscripts/
+- [4] Elastic1.0-wien2k: https://github.com/jazairdz/Elastic1.0-wien2k
 
 ---
 
