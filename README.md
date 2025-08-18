@@ -178,5 +178,6 @@
 10. cp build/platforms/make.inc.gfortran10+ build/make.inc
 11. make mpi
 12. echo 'export PATH="$HOME/exciting-neon.0.1/bin:$PATH"' >> ~/.bashrc
+13. echo 'export PATH="$HOME/exciting-neon.0.1/tools/tutorial_scripts:$PATH"' >> ~/.bashrc
 
 ---
