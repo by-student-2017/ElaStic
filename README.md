@@ -12,6 +12,7 @@
   - full second-order elastic tensors (elastic constants) for all crystal lattice types
   - third-order elastic constants for cubic, hexagonal, and rhombohedral crystals
   - Generation of deformed structures, evaluation of energy and stress, and analysis using polynomial fitting
+  - WIEN2k (energy mode), exciting (energy mode), QE (energy or stress mode)
 
 ---
 
