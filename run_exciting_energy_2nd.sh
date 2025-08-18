@@ -57,6 +57,7 @@ ElaStic_Setup_exciting < set_energy_2nd.txt
 #  cp input.xml ./../${subdir}/${base}/
 #  mv *.OUT ./../${subdir}/${base}/
 #done
+#cd ../
 #
 # Run Exciting calculations for each Dst*_*,in file
 label=`ls -d Dst??`
@@ -78,13 +79,14 @@ for Dstn in $label ; do
     cd ../
 done
 
-cd ../
+# Return to the main directory and run ElaStic_Analyze_Energy
+ElaStic_Analyze
 
 sed -i s/eta_max/0.030/g ElaStic_2nd.in
 sed -i s/Fit_order/4/g ElaStic_2nd.in
 
-# Return to the main directory and run ElaStic_Analyze_Energy
-ElaStic_Analyze
+# Return to the main directory and run ElaStic_Result
+ElaStic_Result
 
 # Check and display ElaStic_2nd.out in Energy-vs-Strain directory
 if [ -f ./Energy-vs-Strain/ElaStic_2nd.out ]; then
