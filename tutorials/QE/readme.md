@@ -6,7 +6,16 @@
 ## Easy method (stress and 2nd order)
 1. bash run_qe_energy_2nd.sh
 
-## Step by step
+## Step by step (energy and 2nd order)
+1. ElaStic_Setup
+2. (input your calculation conditions)
+3. bash run_qe_energy.sh
+4. ElaStic_exciting_analyze.py
+   - or ElaStic_Analyze
+5. ElaStic_Result
+6. cat ElaStic_2nd.out
+
+## Step by step (stress and 2nd order)
 1. ElaStic_Setup
 2. (input your calculation conditions)
 3. bash run_qe_stress.sh
@@ -14,7 +23,6 @@
    - or ElaStic_Analyze
 5. ElaStic_Result
 6. cat ElaStic_2nd.out
-
 
 ## Results: Diamond Si (Energy and 2nd order)
 ```
