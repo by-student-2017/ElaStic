@@ -5,10 +5,9 @@
 ## Features
 - Language: Python3 (Migrating from python2 to python3)
 - Calculation target
-  - Mode: energy: exciting and QE (Quantum Espresso, PWscf)
+  - Mode: energy: WIEN2k, exciting and QE (Quantum Espresso, PWscf)
   - Mode: stress: QE (Quantum Espresso, PWscf) (WIEN2k and exciting: SORRY, Not implemented yet)
-  - Version: exciting: neon series, QE: v6.8 or Later
-  - Note: I set WIEN2k to P1, but an error occurs in init_lapw. Using "x sgroup; cp -f ${Dstn_num}.struct_sgroup ${Dstn_num}.struct" will resolve the error, but since the symmetry changes with each distortion, the energy must be unified to P1.
+  - Version: WIEN2k: ver.16, exciting: neon series, QE: v6.8 or Later
 - External Tools:
   - SGROUP: Determine space group and symmetry operations (included in adon_v1_0.tar.gz)
   - DFT Code: Supports Exciting, WIEN2k, and Quantum ESPRESSO
