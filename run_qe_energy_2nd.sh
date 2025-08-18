@@ -31,7 +31,7 @@ case.elastic.in
 EOF
 
 # Run ElaStic_Setup with the input file
-ElaStic_Setup_ESPRESSO < set_energy_2nd.txt
+python3 $HOME/ElaStic/ElaStic_Setup_ESPRESSO < set_energy_2nd.txt
 
 # copy pseudo-potentials
 cp *.UPF ./Structures_ESPRESSO/
@@ -66,13 +66,13 @@ done
 cd ../
 
 # Return to the main directory and run ElaStic_Analyze_Energy
-ElaStic_Analyze
+python3 $HOME/ElaStic/ElaStic_Analyze
 
 sed -i s/eta_max[0-9]*/0.030/g ElaStic_2nd.in
 sed -i s/Fit_order[0-9]*/4/g ElaStic_2nd.in
 
 # Return to the main directory and run ElaStic_Result
-ElaStic_Result
+python3 $HOME/ElaStic/ElaStic_Result
 
 # Check and display ElaStic_2nd.out in Energy-vs-Strain directory
 if [ -f ./Energy-vs-Strain/ElaStic_2nd.out ]; then
