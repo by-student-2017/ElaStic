@@ -66,7 +66,7 @@ cd ../
 # Return to the main directory and run ElaStic_Analyze_Energy
 ElaStic_Analyze
 
-sed -i s/eta_max[0-9]*/0.005/g ElaStic_2nd.in
+sed -i s/eta_max[0-9]*/0.030/g ElaStic_2nd.in
 sed -i s/Fit_order[0-9]*/4/g ElaStic_2nd.in
 
 # Return to the main directory and run ElaStic_Result
