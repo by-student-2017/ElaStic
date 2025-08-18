@@ -289,14 +289,15 @@ root = doc.getroot()
 #--------------------------------------------------------------------------------------------------
 
 #%%-- Reading the scale, stretch, and base vectors from the input file and calculate the volume -%%
-scale = map(float,doc.xpath('/input/structure/crystal/@scale'))
+scale = list(map(float, doc.xpath('/input/structure/crystal/@scale')))
 if (scale==[]):
     sys.exit('\n.... Oops ERROR: There is NO scale in '+ INF +' file !?!?!?    \n')
 
 stretchstr = doc.xpath('/input/structure/crystal/@stretch')
-if (stretchstr==[]):
-    stretch=[1.,1.,1.]
-else: stretch=np.array(map(float,stretchstr[0].split()))
+if (stretchstr == []):
+    stretch = [1.0, 1.0, 1.0]
+else:
+    stretch = list(map(float, stretchstr[0].split()))
 
 basevectsn = doc.xpath('//basevect/text()')
 bv = []
@@ -513,10 +514,11 @@ for i in Lag_strain_list:
         # Writing the structure file --------------------------------------------------------------
         fileName = Dstn_cont2 + '.xml'
         OUTOBJ   = open(fileName, 'w')
-        OUTOBJ.write(ET.tostring(root, method         ='xml',
-                                       pretty_print   =True ,
-                                       xml_declaration=True ,
-                                       encoding       ='UTF-8'))
+        OUTOBJ.write(ET.tostring(root,
+                         method='xml',
+                         pretty_print=True,
+                         xml_declaration=True,
+                         encoding='UTF-8').decode('UTF-8'))
         OUTOBJ.close()
         # -----------------------------------------------------------------------------------------
         os.chdir('../')
