@@ -147,6 +147,24 @@
 7. make pwall
 8. sudo make install
 
+## Exciting neon-21 Installation
+1. sudo apt update
+2. sudo apt -y install gfortran g++ build-essential make libopenblas-dev libopenmpi-dev libfftw3-dev
+3. sudo apt -y install gnuplot ghostscript
+4. sudo apt -y install python3-all-dev graphviz xsltproc
+5. sudo apt -y install libhdf5-dev fftw3-dev
+6. pip3 install lxml
+7. cd $HOME
+8. mkdir neon.21
+9. cd neon.21
+10. wget https://exciting-code.org/uploads/exciting/exciting.neon-21.tar.gz
+11. tar xvf exciting.neon-21.tar.gz
+12. cp build/platforms/make.inc.gfortran10+.hdf5.fftw3 build/make.inc
+13. make mpi
+14. pip install excitingtools==1.6.0
+15. make test
+16. echo 'export PATH="$HOME/exciting-neon.0.1/bin:$PATH"' >> ~/.bashrc
+
 ## Exciting neon.0.1 Installation
 1. sudo apt update
 2. sudo apt -y install gfortran g++ build-essential make libopenblas-dev libopenmpi-dev libfftw3-dev
@@ -158,9 +176,7 @@
 8. tar xvf neon.0.1.tar.gz
 9. cd exciting-neon.0.1
 10. cp build/platforms/make.inc.gfortran10+ build/make.inc
-11. make smp
-12. pip install excitingtools==1.6.0
-13. make test
-14. echo 'export PATH="$HOME/exciting-neon.0.1/bin:$PATH"' >> ~/.bashrc
+11. make mpi
+12. echo 'export PATH="$HOME/exciting-neon.0.1/bin:$PATH"' >> ~/.bashrc
 
 ---
