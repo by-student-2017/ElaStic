@@ -162,7 +162,7 @@
 11. tar xvf exciting.neon-21.tar.gz
 12. cp build/platforms/make.inc.gfortran10+.hdf5.fftw3 build/make.inc
 13. make mpi
-14. echo 'export $EXCITINGROOT="$HOME/exciting-neon.21"' >> ~/.bashrc
+14. echo 'export EXCITINGROOT="$HOME/exciting-neon.21"' >> ~/.bashrc
 15. echo 'export PATH="$EXCITINGROOT/bin:$PATH"' >> ~/.bashrc
 16. echo 'export PATH="$EXCITINGROOT/tools/tutorial_scripts:$PATH"' >> ~/.bashrc
 
@@ -178,7 +178,7 @@
 9. cd exciting-neon.0.1
 10. cp build/platforms/make.inc.gfortran10+ build/make.inc
 11. make mpi
-12. echo 'export $EXCITINGROOT="$HOME/exciting-neon.0.1"' >> ~/.bashrc
+12. echo 'export EXCITINGROOT="$HOME/exciting-neon.0.1"' >> ~/.bashrc
 13. echo 'export PATH="$EXCITINGROOT/bin:$PATH"' >> ~/.bashrc
 14. echo 'export PATH="$EXCITINGROOT/tools/tutorial_scripts:$PATH"' >> ~/.bashrc
 
