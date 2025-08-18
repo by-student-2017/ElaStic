@@ -19,6 +19,7 @@ for Dstn in $label ; do
         echo '        +--------------------------------------+'
         time mpirun -np ${NCPUs} $EXECUTABLE | tee output.screen
         date
+        cp TOTENERGY.OUT energy_output
         cd ../
     done
     cd ../
