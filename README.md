@@ -158,10 +158,9 @@
 8. tar xvf neon.0.1.tar.gz
 9. cd exciting-neon.0.1
 10. cp build/platforms/make.inc.gfortran10+ build/make.inc
-11. make serial
-12. make mpi
-13. pip install excitingtools==1.6.0
-14. make test
-15. echo 'export PATH="$HOME/exciting-neon.0.1/bin:$PATH"' >> ~/.bashrc
+11. make smp
+12. pip install excitingtools==1.6.0
+13. make test
+14. echo 'export PATH="$HOME/exciting-neon.0.1/bin:$PATH"' >> ~/.bashrc
 
 ---
