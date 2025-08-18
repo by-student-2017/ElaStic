@@ -176,4 +176,9 @@
 13. echo 'export PATH="$EXCITINGROOT/bin:$PATH"' >> ~/.bashrc
 14. echo 'export PATH="$EXCITINGROOT/tools/tutorial_scripts:$PATH"' >> ~/.bashrc
 
+## requirements.txt
+```
+pip freeze > requirements.txt
+```
+
 ---
