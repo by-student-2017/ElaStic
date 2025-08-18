@@ -7,6 +7,7 @@
 - Calculation target
   - Mode: energy: WIEN2k, exciting and QE (Quantum Espresso, PWscf)
   - Mode: stress: QE (Quantum Espresso, PWscf)
+  - Version: exciting: neon series, QE: v6.8 or Later
 - External Tools:
   - SGROUP: Determine space group and symmetry operations (included in adon_v1_0.tar.gz)
   - DFT Code: Supports Exciting, WIEN2k, and Quantum ESPRESSO
