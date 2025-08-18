@@ -116,6 +116,7 @@
 - [4] Elastic1.0-wien2k: https://github.com/jazairdz/Elastic1.0-wien2k
 - [5] WT16: https://rashid-phy.github.io/me/wien2k.html
 - [6] https://www.youtube.com/@phy22: https://www.youtube.com/hashtag/physicsschool20
+- [7] exciting-neon.21/tools/tutorial_scripts: http://exciting.wikidot.com/neon-how-to-calculate-stress-tensor
 
 ---
 
