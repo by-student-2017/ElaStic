@@ -7,7 +7,8 @@
 - Calculation target
   - Mode: energy: exciting and QE (Quantum Espresso, PWscf)
   - Mode: stress: QE (Quantum Espresso, PWscf) (WIEN2k and exciting: SORRY, Not implemented yet)
-  - Version: WIEN2k:ver.16, exciting: neon series, QE: v6.8 or Later
+  - Version: exciting: neon series, QE: v6.8 or Later
+  - Note: WIEN2k should be set to P1, but an error occurs in init_lapw. The error can be resolved by using x group, but since the symmetry changes with each distortion, the energy must be unified to P1.
 - External Tools:
   - SGROUP: Determine space group and symmetry operations (included in adon_v1_0.tar.gz)
   - DFT Code: Supports Exciting, WIEN2k, and Quantum ESPRESSO
