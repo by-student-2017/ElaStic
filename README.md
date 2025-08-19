@@ -131,6 +131,7 @@
 - exciting: neon-21
 - WIEN2k: ver.16
 - gfortran: gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)
+- pandas: 1.3.5
 
 ## QE v6.8 Installation
 1. sudo apt update
