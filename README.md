@@ -248,7 +248,8 @@ The current implementation uses a simplified model that does not fully capture t
   - **M**: Monoclinic structure (space group numbers 3–15)
   - **N**: Triclinic structure (space group numbers 1–2)
   - ################################################################
-  - **Crystal Symmetry**: The model does not incorporate symmetry constraints specific to each lattice configuration, which are essential for reducing the number of independent elastic constants and ensuring physical consistency.
+  - **Crystal Symmetry**: T[Uploading ElaStic_Analyze_Stress…]()
+he model does not incorporate symmetry constraints specific to each lattice configuration, which are essential for reducing the number of independent elastic constants and ensuring physical consistency.
   - **Tensor Transformation Rules**: Proper transformation rules for strain and stress tensors under symmetry operations are not applied, which may lead to incorrect matrix formulations.
   - **Ab Initio Validation**: The generated matrices have not been validated against results from first-principles calculations (e.g., DFT), which is crucial for confirming their accuracy.
 
@@ -258,5 +259,10 @@ Future improvements may include:
 - Implementing symmetry-aware matrix generation using group theory.
 - Applying correct tensor transformation rules based on crystal class.
 - Comparing and calibrating the generated matrices with ab initio data from ElaStic or similar tools.
+
+### Code relationships in areas that need improvement
+- ElaStic_Setup_*: Ls_Dic, Ls_str, Lag_strain_list
+- ElaStic_Analyze_*: Lag_strain_list
+- ElaStic_Result_*: Matrix, C
 
 ---
