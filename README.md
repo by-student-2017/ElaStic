@@ -247,6 +247,10 @@ The current implementation uses a simplified model that does not fully capture t
   - **O**: Orthorhombic structure (space group numbers 16–74)
   - **M**: Monoclinic structure (space group numbers 3–15)
   - **N**: Triclinic structure (space group numbers 1–2)
+  - ################################################################
+  - **Crystal Symmetry**: The model does not incorporate symmetry constraints specific to each lattice configuration, which are essential for reducing the number of independent elastic constants and ensuring physical consistency.
+  - **Tensor Transformation Rules**: Proper transformation rules for strain and stress tensors under symmetry operations are not applied, which may lead to incorrect matrix formulations.
+  - **Ab Initio Validation**: The generated matrices have not been validated against results from first-principles calculations (e.g., DFT), which is crucial for confirming their accuracy.
 
 These configurations are not yet validated against the original ElaStic methodology and may produce results that differ from expected physical behavior.
 
