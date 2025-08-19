@@ -183,7 +183,7 @@
 pip freeze > requirements.txt
 ```
 
-readme_content = """# README.md
+---
 
 ## For `generate_matrix.py`
 
@@ -196,17 +196,13 @@ This script is designed to generate configuration matrices for various lattice c
 
 The matrices generated here may not reproduce the exact results from the publication. They are intended for educational and conceptual purposes, and future researchers are encouraged to refine and validate the model.
 
----
-
-## Purpose
+### Purpose
 
 The script generates matrices that relate strain tensors to stress components for different lattice configurations. These matrices are used to estimate second-order elastic constants.
 
----
+### Mathematical Background
 
-## Mathematical Background
-
-### Voigt Notation
+#### Voigt Notation
 
 In Voigt notation, the symmetric strain and stress tensors are represented as 6-component vectors:
 
@@ -218,7 +214,7 @@ In Voigt notation, the symmetric strain and stress tensors are represented as 6-
 
 This notation simplifies the representation of second-order tensors in matrix form.
 
-### Matrix Construction
+#### Matrix Construction
 
 For each lattice configuration (LC), a set of strain tensors is defined. For each strain tensor $$\( \varepsilon \)$$ and each stress component $$\( \sigma_i \)$$ (where $$\( i = 1 \)$$ to $$\( 6 \)$$), the row vector is constructed as:
 
@@ -226,10 +222,10 @@ $$[\varepsilon_i \cdot 1, \varepsilon_i \cdot 2, \ldots, \varepsilon_i \cdot N]$
 
 where $$\( N \)$$ is the number of independent elastic tensor components for the given LC.
 
----
-
-## Usage
-
+### Usage
+``
+python3 generate_matrix.py
+```
 Run the script to generate matrices for all supported lattice configurations. Each matrix is printed to the console and written to a file named `python3-code.txt` in the format:
 
 ---
