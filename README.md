@@ -229,4 +229,30 @@ python3 generate_matrix.py
 ```
 Run the script to generate matrices for all supported lattice configurations. Each matrix is printed to the console and written to a file named `python3-code.txt` in the format:
 
+### Future Work
+
+The current implementation uses a simplified model that does not fully capture the complexity of elastic tensor calculations as presented in the ElaStic paper. Specifically:
+
+- The original ElaStic paper and its accompanying code fully support only the following lattice configurations:
+  - **CI**: Cubic I structure (space group numbers 207–230)
+  - **CII**: Cubic II structure (space group numbers 195–206)
+  - **HI**: Hexagonal I structure (space group numbers 177–194)
+  - **HII**: Hexagonal II structure (space group numbers 168–176)
+  - **RI**: Rhombohedral I structure (space group numbers 149–167)
+
+- The following configurations are not fully implemented in the original ElaStic code and are included here for conceptual completeness:
+  - **RII**: Rhombohedral II structure (space group numbers 143–148)
+  - **TI**: Tetragonal I structure (space group numbers 89–142)
+  - **TII**: Tetragonal II structure (space group numbers 75–88)
+  - **O**: Orthorhombic structure (space group numbers 16–74)
+  - **M**: Monoclinic structure (space group numbers 3–15)
+  - **N**: Triclinic structure (space group numbers 1–2)
+
+These configurations are not yet validated against the original ElaStic methodology and may produce results that differ from expected physical behavior.
+
+Future improvements may include:
+- Implementing symmetry-aware matrix generation using group theory.
+- Applying correct tensor transformation rules based on crystal class.
+- Comparing and calibrating the generated matrices with ab initio data from ElaStic or similar tools.
+
 ---
