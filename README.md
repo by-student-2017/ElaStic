@@ -228,4 +228,7 @@ python3 generate_matrix.py
 ```
 Run the script to generate matrices for all supported lattice configurations. Each matrix is printed to the console and written to a file named `python3-code.txt` in the format:
 
+### Disclaimer
+The matrices generated are based on a simplified theoretical model and may differ from those presented in the original ElaStic publication. They are intended for educational and conceptual purposes. Future researchers are encouraged to refine and validate the model.
+
 ---
