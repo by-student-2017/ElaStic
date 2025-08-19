@@ -183,4 +183,53 @@
 pip freeze > requirements.txt
 ```
 
+readme_content = """# README.md
+
+## For `generate_matrix.py`
+
+This script is designed to generate configuration matrices for various lattice configurations (LCs) based on a simplified theoretical model inspired by the publication:
+
+> R. Golesorkhtabar, P. Pavone, J. Spitaler, P. Puschnig, and C. Draxl,  
+> *ElaStic: A tool for calculating second-order elastic constants from first principles*,  
+> Computer Physics Communications **184**, 1861 (2013).  
+> [DOI link](https://exciting-code.org/elastic/)
+
+The matrices generated here may not reproduce the exact results from the publication. They are intended for educational and conceptual purposes, and future researchers are encouraged to refine and validate the model.
+
+---
+
+## Purpose
+
+The script generates matrices that relate strain tensors to stress components for different lattice configurations. These matrices are used to estimate second-order elastic constants.
+
+---
+
+## Mathematical Background
+
+### Voigt Notation
+
+In Voigt notation, the symmetric strain and stress tensors are represented as 6-component vectors:
+
+- Strain tensor:
+  $$\varepsilon = [\varepsilon_{11}, \varepsilon_{22}, \varepsilon_{33}, 2\varepsilon_{23}, 2\varepsilon_{13}, 2\varepsilon_{12}]$$
+
+- Stress tensor:
+  $$\sigma = [\sigma_{11}, \sigma_{22}, \sigma_{33}, \sigma_{23}, \sigma_{13}, \sigma_{12}]$$
+
+This notation simplifies the representation of second-order tensors in matrix form.
+
+### Matrix Construction
+
+For each lattice configuration (LC), a set of strain tensors is defined. For each strain tensor $$\( \varepsilon \)$$ and each stress component $$\( \sigma_i \)$$ (where $$\( i = 1 \)$$ to $$\( 6 \)$$), the row vector is constructed as:
+
+$$[\varepsilon_i \cdot 1, \varepsilon_i \cdot 2, \ldots, \varepsilon_i \cdot N]$$
+
+where $$\( N \)$$ is the number of independent elastic tensor components for the given LC.
+
+---
+
+## Usage
+
+Run the script to generate matrices for all supported lattice configurations. Each matrix is printed to the console and written to a file named `python3-code.txt` in the format:
+
 ---
