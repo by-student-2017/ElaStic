@@ -26,7 +26,7 @@ echo ">>>> Please choose (1, 2, or 3): 2"
 cat <<EOF > set_energy_2nd.txt
 1
 2
-0.030
+0.005
 6
 EOF
 
@@ -38,7 +38,7 @@ bash $HOME/ElaStic/ElaStic_WIEN2k_init.sh
 # Return to the main directory and run ElaStic_Analyze_Energy
 python3 $HOME/ElaStic/ElaStic_Analyze
 
-sed -i s/eta_max/0.030/g ElaStic_2nd.in
+sed -i s/eta_max/0.005/g ElaStic_2nd.in
 sed -i s/Fit_order/4/g ElaStic_2nd.in
 
 # Return to the main directory and run ElaStic_Result
