@@ -11,9 +11,9 @@
 6. cat ElaStic_2nd.out
 
 ## Troubleshooting
-- If the RMTs overlap, an error will be displayed. Therefore, you need to set a larger RMT reduction rate. Increase the number immediately after "-red" in "ElaStic_WIEN2k_init.sh" shown below (the example below shows changing from the initial "-red 15.0" to "-red 20.0"). It is better to increase the value as long as it does not overlap, but since adding distortion makes it difficult to predict, a slightly larger value may be fine.
+- If the RMTs overlap, an error will be displayed. Therefore, you need to set a larger RMT reduction rate. Increase the number immediately after "-red" in "ElaStic_WIEN2k_init.sh" shown below (the example below shows changing from the initial "-red 5.0" to "-red 6.0"). It is better to increase the value as long as it does not overlap, but since adding distortion makes it difficult to predict, a slightly larger value may be fine.
 ```
-WIEN2k_init_lapw_silent.csh -b -red 20.0 -vxc 13  -ecut -10.0  -in1_rkmax 8.0  -in2_method GAUSS  -in2_gmax 14  -in2_smear 0.01  -mix 0.1  -kgen_numk 2500  -kgen_shift 0  -inM_method PORT  -inM_tolf 0.1
+WIEN2k_init_lapw_silent.csh -b -red 6.0 -vxc 13  -ecut -10.0  -in1_rkmax 8.0  -in2_method GAUSS  -in2_gmax 14  -in2_smear 0.01  -mix 0.1  -kgen_numk 2500  -kgen_shift 0  -inM_method PORT  -inM_tolf 0.1
 ```
 - If it doesn't work, give it permission to run:
 ```
