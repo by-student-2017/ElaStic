@@ -223,7 +223,7 @@ $$[\varepsilon_i \cdot 1, \varepsilon_i \cdot 2, \ldots, \varepsilon_i \cdot N]$
 where $$\( N \)$$ is the number of independent elastic tensor components for the given LC.
 
 ### Usage
-``
+```
 python3 generate_matrix.py
 ```
 Run the script to generate matrices for all supported lattice configurations. Each matrix is printed to the console and written to a file named `python3-code.txt` in the format:
