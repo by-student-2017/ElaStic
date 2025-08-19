@@ -194,7 +194,8 @@ This script is designed to generate configuration matrices for various lattice c
 > Computer Physics Communications **184**, 1861 (2013).  
 > [DOI link](https://exciting-code.org/elastic/)
 
-The matrices generated here may not reproduce the exact results from the publication. They are intended for educational and conceptual purposes, and future researchers are encouraged to refine and validate the model.
+### Disclaimer
+The matrices generated are based on a simplified theoretical model and may differ from those presented in the original ElaStic publication. They are intended for educational and conceptual purposes. Future researchers are encouraged to refine and validate the model.
 
 ### Purpose
 
@@ -227,8 +228,5 @@ where $$\( N \)$$ is the number of independent elastic tensor components for the
 python3 generate_matrix.py
 ```
 Run the script to generate matrices for all supported lattice configurations. Each matrix is printed to the console and written to a file named `python3-code.txt` in the format:
-
-### Disclaimer
-The matrices generated are based on a simplified theoretical model and may differ from those presented in the original ElaStic publication. They are intended for educational and conceptual purposes. Future researchers are encouraged to refine and validate the model.
 
 ---
