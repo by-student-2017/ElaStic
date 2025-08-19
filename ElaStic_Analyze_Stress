@@ -210,11 +210,11 @@ if (mthd == 'Stress'):
         if (LC == 'RI'):
             Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 14 columns (C[0]-C[13])
         if (LC == 'RII'):
-            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12 rows x 12 columns (C[0]-C[11])
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 14 columns (C[0]-C[13])
         if (LC == 'TI'):
             Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 8 columns (C[0]-C[7])
         if (LC == 'TII'):
-            Lag_strain_list = ['36', '38']  # NoD = 2, Dst02, Matrix 12 rows x 10 columns (C[0]-C[9])
+            Lag_strain_list = ['36', '38', '42']  # NoD = 3, Dst03, Matrix 18 rows x 10 columns (C[0]-C[9])
         if (LC == 'O'):
             Lag_strain_list = ['36', '42', '43']  # NoD = 3, Dst03, Matrix 18 rows x 10 columns (C[0]-C[9])
         if (LC == 'M'):
